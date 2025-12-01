@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initActiveNavLink();
     initScrollAnimations();
     initPortfolioFilter();
-    initContactFormFixed();
+    initContactForm();
     initParticles();
     initGlitchEffect();
     initTechIconsAnimation();
@@ -219,8 +219,8 @@ function initPortfolioFilter() {
     });
 }
 
-// EmailJS联系表单 - 简化版本
-function initContactFormFixed() {
+// EmailJS联系表单
+function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
 

@@ -1080,7 +1080,13 @@ section {
 }
 
 .contact-form .form-group:last-child {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 确保表单字段布局正确 */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .form-group input,

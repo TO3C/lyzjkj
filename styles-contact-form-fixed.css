@@ -1,0 +1,152 @@
+/* 联系表单修复 - 确保输入框可见和可用 */
+/* 基础表单样式 */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.9);
+    border-radius: 15px;
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1.2rem;
+    background: rgba(15, 15, 15, 0.1);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 500;
+    opacity: 1;
+    display: block;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* 输入框焦点状态 */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    transform: scale(1.02);
+    background: rgba(15, 15, 15, 0.15);
+}
+
+/* 文本区域样式 */
+.form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* 占位符样式 */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+    font-style: italic;
+    transition: opacity 0.3s ease;
+}
+
+/* 按钮样式 */
+.contact-form button {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.contact-form button:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+}
+
+.contact-form button:active {
+    transform: translateY(0);
+}
+
+/* 消息提示样式 */
+.form-message {
+    padding: 1.2rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    max-width: 400px;
+}
+
+.form-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-message.success {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: #00ff00;
+}
+
+.form-message.error {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: #ff4444;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 1.5rem;
+        max-width: 100%;
+        margin: 0 1rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 1rem;
+        font-size: 16px;
+    }
+    
+    .contact-form button {
+        padding: 1rem 1.5rem;
+        font-size: 18px;
+        min-height: 50px;
+    }
+}
+
+/* 移动端输入框优化 */
+@media (max-width: 480px) {
+    .form-group input,
+    .form-group textarea {
+        font-size: 18px;
+        padding: 1.2rem;
+    }
+    
+    .contact-form button {
+        font-size: 18px;
+        min-height: 60px;
+        padding: 1.5rem 2rem;
+    }
+}
