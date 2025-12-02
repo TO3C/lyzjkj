@@ -1145,7 +1145,7 @@ section {
     min-height: 120px;
     resize: vertical;
     margin-left: 0; /* 移除左侧边距，因为标签在输入框上方 */
-    width: calc(100% - 2rem); /* 确保textarea宽度与输入框一致 */
+    width: 100%; /* 让textarea宽度与输入框一致，与对话框两侧对齐 */
 }
 
 .form-group input:focus,
@@ -1158,6 +1158,22 @@ section {
 .form-group input::placeholder,
 .form-group textarea::placeholder {
     color: var(--text-secondary);
+}
+
+/* 联系表单按钮样式 */
+.contact-form button {
+    width: auto;
+    margin: 0 auto;
+    display: block;
+    padding: 1rem 2rem;
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .form-message {
