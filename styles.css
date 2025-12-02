@@ -1144,7 +1144,8 @@ section {
 .form-group textarea {
     min-height: 120px;
     resize: vertical;
-    margin-left: 96px; /* 为textarea添加左侧边距，与其他输入框对齐：标签宽度(80px) + gap(1rem=16px) */
+    margin-left: 0; /* 移除左侧边距，因为标签在输入框上方 */
+    width: calc(100% - 2rem); /* 确保textarea宽度与输入框一致 */
 }
 
 .form-group input:focus,
