@@ -296,39 +296,6 @@ function initContactForm() {
                     hideMessage();
                 }, 5000);
             });
-            .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-                
-                // 显示成功消息
-                showMessage('success', '消息发送成功！我们会尽快与您联系。');
-                
-                // 重置表单
-                contactForm.reset();
-                
-                // 恢复按钮状态
-                submitBtn.innerHTML = originalBtnContent;
-                submitBtn.disabled = false;
-                
-                // 3秒后隐藏消息
-                setTimeout(() => {
-                    hideMessage();
-                }, 5000);
-                
-            }, function(error) {
-                console.log('FAILED...', error);
-                
-                // 显示失败消息
-                showMessage('error', '发送失败，请稍后重试或直接发送邮件至 296077990@qq.com');
-                
-                // 恢复按钮状态
-                submitBtn.innerHTML = originalBtnContent;
-                submitBtn.disabled = false;
-                
-                // 5秒后隐藏消息
-                setTimeout(() => {
-                    hideMessage();
-                }, 5000);
-            });
     });
 
     function showMessage(type, message) {

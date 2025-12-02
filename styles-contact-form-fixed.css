@@ -12,9 +12,37 @@
 
 .contact-form .form-group {
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-.form-group input,
+.form-label {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1rem;
+    min-width: 80px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1.2rem;
+    background: rgba(15, 15, 15, 0.1);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 500;
+    opacity: 1;
+    display: block;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
 .form-group textarea {
     width: 100%;
     padding: 1.2rem;
@@ -30,6 +58,33 @@
     transition: all 0.3s ease;
     -webkit-appearance: none;
     appearance: none;
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.6;
+    margin-left: 9rem; /* 为textarea添加左侧边距，与其他输入框对齐 */
+}
+
+/* 为textarea的form-group添加特殊样式，移除flex布局 */
+.form-group:nth-child(3) {
+    display: block;
+}
+
+/* 响应式设计：在移动端设备上，将form-group改为垂直布局 */
+@media (max-width: 768px) {
+    .contact-form .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .form-label {
+        min-width: auto;
+        font-size: 0.9rem;
+    }
+    
+    .form-group textarea {
+        margin-left: 0;
+    }
 }
 
 /* 输入框焦点状态 */

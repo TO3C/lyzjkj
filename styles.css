@@ -1074,6 +1074,45 @@ section {
     margin-bottom: 1.5rem;
 }
 
+/* 联系表单样式：将标签移至输入框左侧 */
+.contact-form .form-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-label {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1rem;
+    min-width: 80px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* 为textarea的form-group添加特殊样式，移除flex布局 */
+.contact-form .form-group:nth-child(3) {
+    display: block;
+}
+
+/* 响应式设计：在移动端设备上，将form-group改为垂直布局 */
+@media (max-width: 768px) {
+    .contact-form .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .form-label {
+        min-width: auto;
+        font-size: 0.9rem;
+    }
+    
+    .form-group textarea {
+        margin-left: 0;
+    }
+}
+
 /* 优化只有三个字段的表单布局 */
 .contact-form .form-group:first-child {
     margin-top: 0;
@@ -1105,6 +1144,7 @@ section {
 .form-group textarea {
     min-height: 120px;
     resize: vertical;
+    margin-left: 90px; /* 为textarea添加左侧边距，与其他输入框对齐 */
 }
 
 .form-group input:focus,
