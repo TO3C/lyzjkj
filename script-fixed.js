@@ -90,8 +90,8 @@ function initActiveNavLink() {
     // 初始更新
     updateActiveLink();
     
-    // 滚动时更新
-    window.addEventListener('scroll', updateActiveLink);
+    // 滚动时更新 - 使用节流优化
+    window.addEventListener('scroll', throttle(updateActiveLink, 16));
 }
 
 // 滚动动画
@@ -225,7 +225,13 @@ function initContactForm() {
     const formMessage = document.getElementById('formMessage');
 
     // EmailJS 配置
-    emailjs.init("SF1gQ4b50a6Q4Z9OX"); // 替换为你的实际公钥
+    
+    try {
+        emailjs.init("SF1gQ4b50a6Q4Z9OX"); // 替换为你的实际公钥
+    } catch (error) {
+        showMessage('error', 'EmailJS 初始化失败，请检查配置');
+        return;
+    }
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -257,15 +263,14 @@ function initContactForm() {
         const formData = {
             email: email,
             phone: phone,
-            message: message,
-            to_email: '296077990@qq.com'
+            message: message
         };
+
+
 
         // 发送邮件
         emailjs.send('service_pic12wf', 'template_j4ddbl6', formData)
             .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-                
                 // 显示成功消息
                 showMessage('success', '消息发送成功！我们会尽快与您联系。');
                 
@@ -282,10 +287,9 @@ function initContactForm() {
                 }, 5000);
                 
             }, function(error) {
-                console.log('FAILED...', error);
-                
                 // 显示失败消息
                 showMessage('error', '发送失败，请稍后重试或直接发送邮件至 296077990@qq.com');
+                showMessage('error', `错误详情: ${error.message}`);
                 
                 // 恢复按钮状态
                 submitBtn.innerHTML = originalBtnContent;
@@ -400,11 +404,11 @@ function initGlitchEffect() {
         // 随机故障效果
         setInterval(() => {
             if (Math.random() > 0.95) {
-                this.style.animation = 'none';
+                element.style.animation = 'none';
                 setTimeout(() => {
-                    this.style.animation = 'glitch 0.3s infinite';
+                    element.style.animation = 'glitch 0.3s infinite';
                     setTimeout(() => {
-                        this.style.animation = 'glitch 2s infinite';
+                        element.style.animation = 'glitch 2s infinite';
                     }, 300);
                 }, 10);
             }
@@ -445,17 +449,17 @@ function initScrollProgress() {
     `;
     document.body.appendChild(progressBar);
 
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', throttle(function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrollProgress = (scrollTop / scrollHeight) * 100;
         
         progressBar.style.width = scrollProgress + '%';
-    });
+    }, 16));
 }
 
 // 导航栏滚动效果
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', throttle(function() {
     const navbar = document.querySelector('.navbar');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
@@ -466,7 +470,7 @@ window.addEventListener('scroll', function() {
         navbar.style.background = 'rgba(10, 10, 10, 0.95)';
         navbar.style.boxShadow = 'none';
     }
-});
+}, 16));
 
 // 鼠标跟随效果（可选）
 function initMouseFollower() {
@@ -557,10 +561,10 @@ function throttle(func, limit) {
     }
 }
 
-// 优化滚动事件
-window.addEventListener('scroll', throttle(function() {
-    // 滚动相关的事件处理
-}, 16)); // 约60fps
+// 优化滚动事件 - 已合并到各个滚动事件处理函数中
+// window.addEventListener('scroll', throttle(function() {
+//     // 滚动相关的事件处理
+// }, 16)); // 约60fps
 
 // 鼠标跟随效果已禁用以避免冲突
 // initMouseFollower();

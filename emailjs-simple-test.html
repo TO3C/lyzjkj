@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailJS简单测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .error {
+            background-color: #f44336;
+            color: white;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>EmailJS简单测试</h1>
+    <div id="status" class="status"></div>
+    <button onclick="testEmailJS()">测试EmailJS</button>
+    <div id="debug"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // EmailJS配置
+        const publicKey = 'SF1gQ4b50a6Q4Z9OX';
+        const serviceId = 'service_pic12wf';
+        const templateId = 'template_j4ddbl6';
+
+        // 初始化EmailJS
+        emailjs.init(publicKey);
+
+        function testEmailJS() {
+            const statusDiv = document.getElementById('status');
+            const debugDiv = document.getElementById('debug');
+            
+            statusDiv.textContent = '测试中...';
+            statusDiv.className = 'status';
+            debugDiv.innerHTML = '';
+
+            const testData = {
+                email: 'test@example.com',
+                phone: '12345678901',
+                message: '这是一个测试邮件',
+                to_email: '296077990@qq.com'
+            };
+
+            // 记录发送前的信息
+            debugDiv.innerHTML += '<h3>发送前信息：</h3>';
+            debugDiv.innerHTML += `<p>公钥: ${publicKey}</p>`;
+            debugDiv.innerHTML += `<p>服务ID: ${serviceId}</p>`;
+            debugDiv.innerHTML += `<p>模板ID: ${templateId}</p>`;
+            debugDiv.innerHTML += `<p>测试数据: ${JSON.stringify(testData)}</p>`;
+
+            // 发送测试邮件
+            emailjs.send(serviceId, templateId, testData)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    statusDiv.textContent = '✅ 发送成功！';
+                    statusDiv.className = 'status success';
+                    debugDiv.innerHTML += '<h3>发送成功：</h3>';
+                    debugDiv.innerHTML += `<p>状态码: ${response.status}</p>`;
+                    debugDiv.innerHTML += `<p>响应文本: ${response.text}</p>`;
+                    debugDiv.innerHTML += `<p>完整响应: ${JSON.stringify(response)}</p>`;
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    statusDiv.textContent = '❌ 发送失败！';
+                    statusDiv.className = 'status error';
+                    debugDiv.innerHTML += '<h3>发送失败：</h3>';
+                    debugDiv.innerHTML += `<p>错误信息: ${error.message}</p>`;
+                    debugDiv.innerHTML += `<p>完整错误: ${JSON.stringify(error)}</p>`;
+                });
+        }
+    </script>
+</body>
+</html>

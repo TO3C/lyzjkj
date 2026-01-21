@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailJS更新配置测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .error {
+            background-color: #f44336;
+            color: white;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .step {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #007bff;
+        }
+        .code {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            overflow-x: auto;
+        }
+        .important {
+            color: #f44336;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>EmailJS更新配置测试</h1>
+    <div id="status" class="status"></div>
+    
+    <h2>新的授权码：<span class="important">omlxleeeoetmbgeb</span></h2>
+    
+    <h2>更新步骤说明</h2>
+    
+    <div class="step">
+        <h3>步骤1：登录EmailJS官网</h3>
+        <p>访问 <a href="https://www.emailjs.com/" target="_blank">https://www.emailjs.com/</a> 并登录您的账号</p>
+    </div>
+    
+    <div class="step">
+        <h3>步骤2：进入Email Services页面</h3>
+        <p>1. 点击左侧菜单中的 <strong>"Email Services"</strong></p>
+        <p>2. 找到当前配置的服务 <strong>service_pic12wf</strong></p>
+    </div>
+    
+    <div class="step">
+        <h3>步骤3：更新服务配置</h3>
+        <p>1. 点击服务右侧的 <strong>"Edit"</strong> 按钮</p>
+        <p>2. 在密码/授权码字段中，替换为新的授权码：<span class="important">omlxleeeoetmbgeb</span></p>
+        <p>3. 确保所有其他配置正确</p>
+        <p>4. 点击 <strong>"Update Service"</strong> 保存更改</p>
+    </div>
+    
+    <div class="step">
+        <h3>步骤4：测试配置</h3>
+        <p>1. 点击下方的 "测试EmailJS配置" 按钮</p>
+        <p>2. 查看测试结果</p>
+        <p>3. 如果测试成功，再测试主页面表单</p>
+    </div>
+    
+    <button onclick="testEmailJS()">测试EmailJS配置</button>
+    <div id="debug"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // EmailJS配置
+        const publicKey = 'SF1gQ4b50a6Q4Z9OX';
+        const serviceId = 'service_pic12wf';
+        const templateId = 'template_j4ddbl6';
+
+        // 初始化EmailJS
+        emailjs.init(publicKey);
+
+        function testEmailJS() {
+            const statusDiv = document.getElementById('status');
+            const debugDiv = document.getElementById('debug');
+            
+            statusDiv.textContent = '测试中...';
+            statusDiv.className = 'status';
+            debugDiv.innerHTML = '';
+
+            const testData = {
+                email: 'test@example.com',
+                phone: '12345678901',
+                message: '这是一个测试邮件'
+            };
+
+            // 记录发送前的信息
+            debugDiv.innerHTML += '<h3>发送前信息：</h3>';
+            debugDiv.innerHTML += `<p>公钥: ${publicKey}</p>`;
+            debugDiv.innerHTML += `<p>服务ID: ${serviceId}</p>`;
+            debugDiv.innerHTML += `<p>模板ID: ${templateId}</p>`;
+            debugDiv.innerHTML += `<p>测试数据: ${JSON.stringify(testData)}</p>`;
+            debugDiv.innerHTML += `<p>使用的授权码: omlxleeeoetmbgeb</p>`;
+
+            // 发送测试邮件
+            emailjs.send(serviceId, templateId, testData)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    statusDiv.textContent = '✅ 发送成功！';
+                    statusDiv.className = 'status success';
+                    debugDiv.innerHTML += '<h3>发送成功：</h3>';
+                    debugDiv.innerHTML += `<p>状态码: ${response.status}</p>`;
+                    debugDiv.innerHTML += `<p>响应文本: ${response.text}</p>`;
+                    debugDiv.innerHTML += `<p>完整响应: ${JSON.stringify(response)}</p>`;
+                    debugDiv.innerHTML += '<div class="step success">🎉 EmailJS配置更新成功！您可以测试主页面表单了。</div>';
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    statusDiv.textContent = '❌ 发送失败！';
+                    statusDiv.className = 'status error';
+                    debugDiv.innerHTML += '<h3>发送失败：</h3>';
+                    debugDiv.innerHTML += `<p>错误类型: ${error.name || '未知'}</p>`;
+                    debugDiv.innerHTML += `<p>错误消息: ${error.message || 'undefined'}</p>`;
+                    debugDiv.innerHTML += `<p>完整错误: ${JSON.stringify(error)}</p>`;
+                    
+                    // 解析常见错误
+                    if (error.text && error.text.includes('535 Login fail')) {
+                        debugDiv.innerHTML += '<div class="step error">⚠️ 错误分析：QQ邮箱登录失败，可能是授权码错误或未开通SMTP服务</div>';
+                        debugDiv.innerHTML += '<h4>解决建议：</h4>';
+                        debugDiv.innerHTML += '<ul>';
+                        debugDiv.innerHTML += '<li>1. 确认已开通QQ邮箱SMTP服务</li>';
+                        debugDiv.innerHTML += '<li>2. 确认授权码正确：omlxleeeoetmbgeb</li>';
+                        debugDiv.innerHTML += '<li>3. 检查EmailJS后台配置是否正确</li>';
+                        debugDiv.innerHTML += '</ul>';
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

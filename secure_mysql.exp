@@ -1,0 +1,35 @@
+#!/usr/bin/expect
+
+set timeout 30
+spawn mysql_secure_installation
+
+# 等待密码验证组件提示
+expect "Would you like to setup VALIDATE PASSWORD component?"
+send "n\r"
+
+# 等待设置root密码提示
+expect "New password:"
+send "rootpassword\r"
+
+# 确认密码
+expect "Re-enter new password:"
+send "rootpassword\r"
+
+# 移除匿名用户
+expect "Remove anonymous users?"
+send "y\r"
+
+# 不允许root远程登录
+expect "Disallow root login remotely?"
+send "y\r"
+
+# 删除测试数据库
+expect "Remove test database and access to it?"
+send "y\r"
+
+# 重新加载权限表
+expect "Reload privilege tables now?"
+send "y\r"
+
+# 等待命令完成
+expect eof
