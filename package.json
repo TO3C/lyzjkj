@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "流云智炬科技官网",
   "scripts": {
-    "start": "echo 'Static website'"
+    "start": "echo 'Static website'",
+    "build": "echo 'Static website - no build needed'"
   },
   "devDependencies": {}
 }
