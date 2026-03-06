@@ -219,19 +219,26 @@ function initPortfolioFilter() {
     });
 }
 
-// EmailJS联系表单
-function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+    // EmailJS 联系表单
+    function initContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
 
-    // EmailJS 配置
-    
-    try {
-        emailjs.init("SF1gQ4b50a6Q4Z9OX"); // 替换为你的实际公钥
-    } catch (error) {
-        showMessage('error', 'EmailJS 初始化失败，请检查配置');
-        return;
-    }
+        // 检查 EmailJS 是否加载成功
+        if (typeof emailjs === 'undefined') {
+            // EmailJS 未加载，使用备用方案
+            console.warn('EmailJS 未加载，使用备用提交方案');
+            initFallbackForm(contactForm, formMessage);
+            return;
+        }
+        
+        try {
+            emailjs.init("SF1gQ4b50a6Q4Z9OX");
+        } catch (error) {
+            console.warn('EmailJS 初始化失败，使用备用方案');
+            initFallbackForm(contactForm, formMessage);
+            return;
+        }
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -305,6 +312,36 @@ function initContactForm() {
     function showMessage(type, message) {
         formMessage.textContent = message;
         formMessage.className = 'form-message show ' + type;
+    }
+
+    function initFallbackForm(contactForm, formMessage) {
+        showMessage('info', '正在打开邮件客户端...');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!email && !phone) {
+                showMessage('error', '请至少填写邮箱或电话');
+                return;
+            }
+            
+            if (!message || message.length < 10) {
+                showMessage('error', '请详细描述需求（至少10个字符）');
+                return;
+            }
+            
+            const subject = encodeURIComponent('来自网站的咨询 - ' + (email || phone));
+            const body = encodeURIComponent('联系方式: ' + (email || phone) + '\n\n需求:\n' + message);
+            const mailto = 'mailto:296077990@qq.com?subject=' + subject + '&body=' + body;
+            
+            window.location.href = mailto;
+            showMessage('success', '邮件客户端已打开，请发送邮件！');
+            contactForm.reset();
+        });
     }
 
     function hideMessage() {
