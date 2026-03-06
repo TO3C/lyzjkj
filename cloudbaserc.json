@@ -2,13 +2,20 @@
   "envId": "lyzjkj-top-7g2o2uud420b1470",
   "version": "2.0",
   "framework": {
-    "name": "static-website",
+    "name": "lyzjkj-website",
     "plugins": {
       "hosting": {
         "use": "@cloudbase/framework-plugin-hosting",
         "inputs": {
-          "outputPath": ".",
-          "cloudPath": "/"
+          "outputPath": "./",
+          "cloudPath": "/",
+          "ignore": [
+            "node_modules",
+            ".git",
+            "cloudbaserc.json",
+            "package.json",
+            "package-lock.json"
+          ]
         }
       }
     }
