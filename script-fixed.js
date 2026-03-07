@@ -222,12 +222,15 @@ function initPortfolioFilter() {
     // EmailJS 联系表单
     function initContactForm() {
         const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
         const formMessage = document.getElementById('formMessage');
 
         console.log('EmailJS loaded:', typeof emailjs);
         
         if (typeof emailjs === 'undefined') {
             console.error('EmailJS not loaded!');
+            formMessage.textContent = '邮件服务加载失败，请刷新页面';
+            formMessage.className = 'form-message show error';
             return;
         }
         
@@ -237,11 +240,13 @@ function initPortfolioFilter() {
             console.log('EmailJS initialized');
         } catch (e) {
             console.error('EmailJS init error:', e);
+            formMessage.textContent = '邮件服务初始化失败';
+            formMessage.className = 'form-message show error';
             return;
         }
 
-        contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+        submitBtn.addEventListener('click', function(e) {
+            e.preventDefault();
 
         // 简化表单验证逻辑
         const email = document.getElementById('email').value.trim();
@@ -261,7 +266,6 @@ function initPortfolioFilter() {
         }
 
         // 显示加载状态
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalBtnContent = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 发送中...';
         submitBtn.disabled = true;
@@ -297,7 +301,7 @@ function initPortfolioFilter() {
             }, function(error) {
                 // 显示失败消息
                 showMessage('error', '发送失败，请稍后重试或直接发送邮件至 296077990@qq.com');
-                showMessage('error', `错误详情: ${error.message}`);
+                showMessage('error', `错误详情: ${error.text}`);
                 
                 // 恢复按钮状态
                 submitBtn.innerHTML = originalBtnContent;
@@ -308,7 +312,7 @@ function initPortfolioFilter() {
                     hideMessage();
                 }, 5000);
             });
-    });
+        });
 
     function showMessage(type, message) {
         formMessage.textContent = message;
