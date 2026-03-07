@@ -224,6 +224,8 @@ function initPortfolioFilter() {
         const contactForm = document.getElementById('contactForm');
         const formMessage = document.getElementById('formMessage');
 
+        console.log('EmailJS loaded:', typeof emailjs);
+        
         // 初始化 EmailJS
         emailjs.init("SF1gQ4b50a6Q4Z9OX");
 
