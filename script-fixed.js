@@ -747,17 +747,32 @@ function getSmartReply(input) {
     return '😊 欢迎访问流云智炬！\n💰 价格 | 📦 套餐 | 📞 联系\n直接点击下方按钮或输入问题~';
 }
 
-const chatMessages = document.getElementById('chatMessages');
-const chatInput = document.getElementById('chatInput');
-const chatSend = document.getElementById('chatSend');
+document.addEventListener('DOMContentLoaded', function() {
+    initAIChat();
+});
+
+let chatMessages, chatInput;
 
 function getCurrentTime() {
     const now = new Date();
-    return String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+    return String(now.getHours()).padStart(2, '0') + ':' + 
+           String(now.getMinutes()).padStart(2, '0');
 }
 
-if (chatSend) chatSend.addEventListener('click', sendMessage);
-if (chatInput) chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+function initAIChat() {
+    const chatWidget = document.getElementById('aiChatWidget');
+    if (!chatWidget) return;
+    
+    chatMessages = document.getElementById('chatMessages');
+    chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSend');
+    
+    if (!chatMessages || !chatInput || !chatSend) return;
+    
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+    loadChatHistory();
+}
 
 function sendMessage() {
     const message = chatInput.value.trim();
