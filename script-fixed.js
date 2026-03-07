@@ -240,7 +240,7 @@ function initPortfolioFilter() {
             return;
         }
 
-    contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
         // 简化表单验证逻辑
