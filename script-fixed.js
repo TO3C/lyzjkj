@@ -226,8 +226,19 @@ function initPortfolioFilter() {
 
         console.log('EmailJS loaded:', typeof emailjs);
         
+        if (typeof emailjs === 'undefined') {
+            console.error('EmailJS not loaded!');
+            return;
+        }
+        
         // 初始化 EmailJS
-        emailjs.init("SF1gQ4b50a6Q4Z9OX");
+        try {
+            emailjs.init("SF1gQ4b50a6Q4Z9OX");
+            console.log('EmailJS initialized');
+        } catch (e) {
+            console.error('EmailJS init error:', e);
+            return;
+        }
 
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -265,9 +276,10 @@ function initPortfolioFilter() {
 
 
         // 发送邮件
+        console.log('Sending email with EmailJS...');
         emailjs.send('service_pic12wf', 'template_j4ddbl6', formData)
             .then(function(response) {
-                // 显示成功消息
+                console.log('EmailJS success:', response);
                 showMessage('success', '消息发送成功！我们会尽快与您联系。');
                 
                 // 重置表单
