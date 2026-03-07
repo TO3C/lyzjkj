@@ -1,0 +1,7 @@
+credentials.json
+.env
+.env.local
+*.log
+node_modules/
+.DS_Store
+cloudbaserc.json
