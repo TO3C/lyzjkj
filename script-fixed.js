@@ -661,65 +661,30 @@ if (techShowcase) {
     observer.observe(techShowcase);
 }
 
-// AI Chat Widget
-const KNOWLEDGE_BASE = {
-    '套餐': ['📦 初创版 ¥3,800（3-5天）\n💰 品牌版 ¥6,800（7-10天）🔥\n💰 集团版 ¥12,800（15-20天）\n\n回复"价格"看详细'],
-    '价格': ['💰 初创3,800 | 品牌6,800 | 集团12,800\n📱 小程序3,000起 | 电商8,000起\n📧 296077990@qq.com'],
-    '多少钱': ['💰 网站 ¥3,800 起\n根据需求定制，免费咨询'],
-    '做网站': ['🕐 初创3-5天，品牌7-10天，集团15-20天\n加急可协商~'],
-    '多久': ['⏱️ 初创3-5天 | 品牌7-10天 | 集团15-20天'],
-    '淘宝': ['✅ 原创设计 | ✅ SEO优化\n✅ 2小时售后 | ✅ 海南本地\n专业服务，值得信赖！'],
-    '推广': ['📣 网站SEO免费\n付费推广可合作，回复"联系"详谈'],
-    '小程序': ['📱 微信/支付宝小程序 ¥3,000起\n品牌版赠送小程序'],
-    'SEO': ['🔍 基础SEO免费送\n深度优化需付费，提升排名有效'],
-    '售后': ['🛡️ 2小时响应 | 1个月免费维护\n续费¥2,400/年'],
-    '海南': ['📍 海南三亚\n📞 工作日9-18点\n服务200+企业'],
-    '公司': ['🏢 流云智炬科技\n🌐 网站 | 📱 小程序 | 🔍 SEO\n📍 海南三亚 | 200+客户'],
-    '联系': ['📧 296077990@qq.com\n📍 海南三亚\n💬 点击在线咨询'],
-    '流程': ['🔄 需求→签约→开发→上线→售后\n5步完成，欢迎咨询~'],
-    '优势': ['⭐ 快速响应 | 原创设计\n⭐ 2小时售后 | 合理价格'],
-    'hello': ['👋 您好！有什么可以帮您？'],
-    '你好': ['👋 你好！随时为您服务~'],
-    'hi': ['👋 Hi！想问什么尽管说'],
-    '谢谢': ['😊 不客气！有问题随时问'],
-    '好': ['😊 很高兴帮到您！'],
-    '棒': ['👍 感谢支持！有问题随时找我'],
-    '再见': ['👋 再见！欢迎下次光临~'],
-    '拜拜': ['👋 拜拜！有需要随时找我'],
-};
+// AI Chat Widget - AI 云函数接口
+const AI_CHAT_API = 'https://cloud1-0ggg2niq36a70b37.service.tcloudbase.com/ai-chat';
+let chatHistory = []; // 对话上下文（最多存10轮）
 
-function getSmartReply(input) {
-    const lower = input.toLowerCase();
-    const scores = {
-        '套餐': ['套餐', '服务', '方案'],
-        '价格': ['价格', '报价', '收费', '多少', '钱'],
-        '多少钱': ['多少钱', '贵不贵', '便宜'],
-        '做网站': ['做网站', '建站', '网站制作', '开发网站'],
-        '多久': ['多久', '时间', '周期', '几天'],
-        '淘宝': ['淘宝', '便宜', '模板'],
-        '推广': ['推广', '流量', '获客', '竞价'],
-        '小程序': ['小程序', '微信小程序', '支付宝'],
-        'SEO': ['SEO', '排名', '搜索引擎'],
-        '售后': ['售后', '维护', '服务'],
-        '海南': ['海南', '三亚', '本地'],
-        '公司': ['公司', '你们', '流云', '关于'],
-        '联系': ['联系', '微信', '邮箱', '电话', '地址'],
-        '流程': ['流程', '合作', '怎么'],
-        '优势': ['优势', '为什么', '好在哪'],
-        'hello': ['hello', 'hi', '你好', '您好', '在吗'],
-        '谢谢': ['谢谢', '感谢', '好的', '知道了'],
-        '好': ['好', '不错', '可以'],
-        '棒': ['棒', '厉害', '优秀'],
-        '再见': ['再见', '拜拜', 'bye', '走了'],
-    };
-    let bestMatch = null, bestScore = 0;
-    for (const [key, keywords] of Object.entries(scores)) {
-        let score = 0;
-        for (const kw of keywords) { if (lower.includes(kw)) score++; }
-        if (score > bestScore) { bestScore = score; bestMatch = key; }
+async function callAI(message) {
+    try {
+        const res = await fetch(AI_CHAT_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message, history: chatHistory })
+        });
+        const data = await res.json();
+        if (data.code === 200 && data.data && data.data.reply) {
+            // 保存对话上下文
+            chatHistory.push({ role: 'user', content: message });
+            chatHistory.push({ role: 'assistant', content: data.data.reply });
+            if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+            return data.data.reply;
+        }
+        throw new Error(data.msg || 'API error');
+    } catch (e) {
+        console.error('AI API error:', e);
+        return '抱歉，我现在有点卡顿～可以直接联系我们的邮箱 296077990@qq.com，我会尽快回复你！';
     }
-    if (bestMatch && KNOWLEDGE_BASE[bestMatch]) return KNOWLEDGE_BASE[bestMatch][0];
-    return '😊 欢迎访问流云智炬！\n💰 价格 | 📦 套餐 | 📞 联系\n直接点击下方按钮或输入问题~';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -730,35 +695,34 @@ let chatMessages, chatInput;
 
 function getCurrentTime() {
     const now = new Date();
-    return String(now.getHours()).padStart(2, '0') + ':' + 
+    return String(now.getHours()).padStart(2, '0') + ':' +
            String(now.getMinutes()).padStart(2, '0');
 }
 
 function initAIChat() {
     const chatWidget = document.getElementById('aiChatWidget');
     if (!chatWidget) return;
-    
+
     chatMessages = document.getElementById('chatMessages');
     chatInput = document.getElementById('chatInput');
     const chatSend = document.getElementById('chatSend');
-    
+
     if (!chatMessages || !chatInput || !chatSend) return;
-    
+
     chatSend.addEventListener('click', sendMessage);
     chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
     loadChatHistory();
 }
 
-function sendMessage() {
+async function sendMessage() {
     const message = chatInput.value.trim();
     if (!message) return;
     addMessage(message, 'user');
     chatInput.value = '';
     showTyping();
-    setTimeout(() => {
-        removeTyping();
-        addMessage(getSmartReply(message), 'ai');
-    }, 500);
+    const reply = await callAI(message);
+    removeTyping();
+    addMessage(reply, 'ai');
 }
 
 function addMessage(content, type) {
@@ -784,6 +748,7 @@ function removeTyping() { const t = document.getElementById('typing'); if (t) t.
 function saveChatHistory() {
     const msgs = [];
     chatMessages.querySelectorAll('.message').forEach(m => {
+        if (m.id === 'typing') return;
         const c = m.querySelector('.message-content');
         if (c) msgs.push({ content: c.innerText, type: m.classList.contains('message-user') ? 'user' : 'ai' });
     });
