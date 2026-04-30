@@ -364,21 +364,21 @@
         
         <div class="ai-chat-window" id="aiChatWindow">
             <div class="chat-header">
-                <div class="chat-title">流云智炬 智能顾问</div>
+                <div class="chat-title">小炬 · AI 顾问</div>
                 <div class="chat-header-actions">
                     <button class="chat-minimize" onclick="document.getElementById('aiChatWindow').classList.remove('active')">−</button>
-                    <button class="chat-clear" onclick="document.getElementById('aiChatWindow').classList.remove('active');document.getElementById('chatMessages').innerHTML='<div class=message message-ai><div class=message-content>对话已清空。请问有什么可以帮您？</div></div>';localStorage.removeItem('ai-chat-history');">✕</button>
+                    <button class="chat-clear" onclick="document.getElementById('aiChatWindow').classList.remove('active');document.getElementById('chatMessages').innerHTML='<div class=message message-ai><div class=message-content>重新来～有啥想聊的尽管说 😊</div></div>';localStorage.removeItem('ai-chat-history');">✕</button>
                 </div>
             </div>
             
             <div class="chat-messages" id="chatMessages">
                 <div class="message message-ai">
-                    <div class="message-content">您好！我是流云智炬AI助手，请问有什么可以帮您？</div>
+                    <div class="message-content">嗨～我是小炬！想了解啥随便问，网站、小程序、合作都行 😊</div>
                 </div>
             </div>
             
             <div class="chat-input-area">
-                <input type="text" class="chat-input" id="chatInput" placeholder="请输入您的问题...">
+                <input type="text" class="chat-input" id="chatInput" placeholder="想聊点啥？">
                 <button class="chat-send" id="chatSend">➤</button>
             </div>
         </div>

@@ -778,11 +778,11 @@ function loadChatHistory() {
 function addQuickReplies() {
     const q = document.createElement('div');
     q.className = 'quick-replies';
-    q.innerHTML = `<button class="quick-reply-btn" data-q="套餐">📦 套餐</button><button class="quick-reply-btn" data-q="价格">💰 价格</button><button class="quick-reply-btn" data-q="联系">📞 联系</button>`;
+    q.innerHTML = `<button class="quick-reply-btn" data-q="website">💻 想做网站</button><button class="quick-reply-btn" data-q="miniapp">📱 想做小程序</button><button class="quick-reply-btn" data-q="coop">🤝 合作推广</button>`;
     chatMessages.appendChild(q);
     q.querySelectorAll('.quick-reply-btn').forEach(b => {
         b.addEventListener('click', () => {
-            const v = b.dataset.q === '套餐' ? '我要了解套餐' : b.dataset.q === '价格' ? '我想了解价格' : '我想联系你们';
+            const v = b.dataset.q === 'website' ? '我想了解做网站' : b.dataset.q === 'miniapp' ? '小程序怎么弄' : '合作推广怎么聊';
             chatInput.value = v;
             sendMessage();
         });
