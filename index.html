@@ -6,25 +6,16 @@
     <title>流云智炬科技 — 网站开发 · 小程序开发 · AI客服</title>
     <meta name="description" content="流云智炬科技，三亚本地的互联网工作室。网站开发、小程序开发、AI智能客服，明码标价，源码交付。">
     <meta name="keywords" content="网页开发,网站建设,小程序开发,三亚,流云智炬科技">
-    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="css/styles.css?v=5.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>#header-placeholder{min-height:56px}</style>
 </head>
-<body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">流云智炬</div>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">首页</a></li>
-                <li class="nav-item"><a href="#pricing" class="nav-link">报价</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">关于</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">联系</a></li>
-            </ul>
-            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
-        </div>
-    </nav>
+<body data-page="home">
+    <div id="header-placeholder"></div>
+    <script src="js/components.js"></script>
 
     <main>
         <!-- Hero -->
@@ -188,70 +179,11 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>流云智炬科技</h4>
-                    <p>用温度做技术 · 企业数字化服务伙伴</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-weixin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>快速链接</h4>
-                    <ul>
-                        <li><a href="#home">首页</a></li>
-                        <li><a href="#pricing">查看报价</a></li>
-                        <li><a href="#contact">联系我们</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>联系方式</h4>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> 296077990@qq.com</li>
-                        <li><i class="fas fa-phone"></i> 13876597418</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 海南省三亚市</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 流云智炬科技. 版权所有</p>
-                <p>琼ICP备2025064801号</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
+    <div id="chat-widget-placeholder"></div>
 
-    <!-- AI Chat Widget -->
-<div class="ai-chat-widget" id="aiChatWidget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-        <button class="ai-chat-toggle" id="aiChatToggle" onclick="var w=document.getElementById('aiChatWindow');w.classList.toggle('active');if(w.classList.contains('active'))document.getElementById('chatInput').focus();">
-            <svg class="chat-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="2"/>
-            </svg>
-            <span class="ai-badge">AI</span>
-        </button>
-        <div class="ai-chat-window" id="aiChatWindow">
-            <div class="chat-header">
-                <div class="chat-title">小炬 · AI 顾问</div>
-                <div class="chat-header-actions">
-                    <button class="chat-minimize" onclick="document.getElementById('aiChatWindow').classList.remove('active')">−</button>
-                    <button class="chat-clear" onclick="document.getElementById('aiChatWindow').classList.remove('active');document.getElementById('chatMessages').innerHTML='<div class=message message-ai><div class=message-content>重新来～有啥想聊的尽管说 😊</div></div>';localStorage.removeItem('ai-chat-history');">✕</button>
-                </div>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="message message-ai">
-                    <div class="message-content">嗨～我是小炬！想了解啥随便问，网站、小程序、合作都行 😊</div>
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" id="chatInput" placeholder="想聊点啥？">
-                <button class="chat-send" id="chatSend">➤</button>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="script-fixed.js?v=2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@cloudbase/js-sdk@2.7.10/dist/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

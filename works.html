@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品案例 — 流云智炬科技</title>
+    <meta name="description" content="流云智炬科技作品案例展示。50+项目交付经验，涵盖酒店民宿、餐饮、零售、企业服务等行业。网站开发、小程序开发案例。">
+    <meta name="keywords" content="网站案例,小程序案例,作品展示,三亚,流云智炬科技">
+    <link rel="stylesheet" href="css/styles.css?v=5.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>#header-placeholder{min-height:56px}</style>
+</head>
+<body data-page="works">
+    <div id="header-placeholder"></div>
+    <script src="js/components.js"></script>
+
+    <main>
+        <!-- Hero -->
+        <section class="works-hero">
+            <div class="container">
+                <div class="section-header center">
+                    <p class="section-tag">Portfolio</p>
+                    <h2 class="section-title">作品 <em>案例</em></h2>
+                    <p class="section-sub">50+ 项目交付经验，涵盖酒店民宿、餐饮、零售、企业服务等多个行业</p>
+                </div>
+                <div class="works-stats">
+                    <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">交付项目</div></div>
+                    <div class="stat-item"><div class="stat-number">8年+</div><div class="stat-label">技术积累</div></div>
+                    <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">客户满意度</div></div>
+                    <div class="stat-item"><div class="stat-number">三亚</div><div class="stat-label">本地团队</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 筛选 + 项目网格 -->
+        <section class="works-grid-section">
+            <div class="container">
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="website">网站开发</button>
+                    <button class="filter-btn" data-filter="miniapp">小程序</button>
+                    <button class="filter-btn" data-filter="ecommerce">电商</button>
+                    <button class="filter-btn" data-filter="brand">品牌设计</button>
+                    <button class="filter-btn" data-filter="service">企业服务</button>
+                </div>
+                <div class="portfolio-grid" id="portfolioGrid">
+                    <!-- 由 app.js 动态渲染 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="works-cta">
+            <div class="container">
+                <div class="cta-card">
+                    <h2>有类似的项目需求？</h2>
+                    <p>告诉我们你的想法，我们为你量身定制方案</p>
+                    <a href="index.html#contact" class="btn btn-primary">获取报价</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 项目详情弹窗 -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="关闭">&times;</button>
+            <div class="modal-visual" id="modalIcon"></div>
+            <div class="modal-body">
+                <span class="project-category-badge" id="modalCategory"></span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="modal-section">
+                    <h4>行业标签</h4>
+                    <div id="modalTags"></div>
+                </div>
+                <div class="modal-section">
+                    <h4>技术栈</h4>
+                    <div id="modalTech"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <div id="chat-widget-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@cloudbase/js-sdk@2.7.10/dist/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

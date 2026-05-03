@@ -14,7 +14,22 @@
             ".git",
             "cloudbaserc.json",
             "package.json",
-            "package-lock.json"
+            "package-lock.json",
+            "cloudfunctions"
+          ]
+        }
+      },
+      "function": {
+        "use": "@cloudbase/framework-plugin-function",
+        "inputs": {
+          "functionRootPath": "cloudfunctions",
+          "functions": [
+            {
+              "name": "contact-api",
+              "timeout": 10,
+              "runtime": "Nodejs16.13",
+              "handler": "index.main"
+            }
           ]
         }
       }

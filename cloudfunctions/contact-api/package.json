@@ -1,0 +1,9 @@
+{
+  "name": "contact-api",
+  "version": "1.0.0",
+  "description": "Contact form persistence cloud function",
+  "main": "index.js",
+  "dependencies": {
+    "@cloudbase/node-sdk": "^2.0.0"
+  }
+}
