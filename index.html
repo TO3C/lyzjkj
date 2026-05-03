@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>流云智炬科技 — 海南自贸港企业数字化服务</title>
-    <meta name="description" content="流云智炬科技，专注海南自贸港企业数字化服务。网站开发、小程序开发、AI客服，明码标价、源码交付。">
-    <meta name="keywords" content="网页开发,网站建设,小程序开发,三亚,流云智炬科技,AI客服">
-    <link rel="stylesheet" href="styles.css?v=2.0">
+    <title>流云智炬科技 — 企业数字化服务伙伴</title>
+    <meta name="description" content="流云智炬科技，专注网站开发、小程序开发、AI智能客服。明码标价，源码交付。">
+    <meta name="keywords" content="网页开发,网站建设,小程序开发,三亚,流云智炬科技">
+    <link rel="stylesheet" href="styles.css?v=3.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-bolt"></i>
-                <span>流云智炬</span>
-            </div>
+            <div class="nav-logo">流云智炬</div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#home" class="nav-link">首页</a></li>
                 <li class="nav-item"><a href="#pricing" class="nav-link">报价</a></li>
@@ -28,415 +24,180 @@
                 <li class="nav-item"><a href="#about" class="nav-link">关于</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">联系</a></li>
             </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
         </div>
     </nav>
 
     <main>
-        <!-- ====== Hero ====== -->
+        <!-- Hero -->
         <section id="home" class="hero">
-            <div class="hero-geo hero-geo-1"></div>
-            <div class="hero-geo hero-geo-2"></div>
-            <div class="hero-geo hero-geo-3"></div>
-            <div class="hero-content">
-                <div class="hero-badge">HAINAN · SANYA</div>
-                <h1 class="hero-title">
-                    <span class="line1">用温度做技术</span>
-                    <span class="line2">流云智炬科技</span>
-                </h1>
-                <p class="hero-subtitle">企业数字化服务伙伴</p>
-                <p class="hero-desc">网站开发 · 小程序开发 · AI智能客服<br>明码标价 · 源码交付 · 售后保障</p>
-                <div class="hero-buttons">
-                    <a href="#pricing" class="btn btn-primary">
-                        <span>查看报价</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#contact" class="btn btn-outline">
-                        <span>免费咨询</span>
-                        <i class="fas fa-comment"></i>
-                    </a>
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <p class="hero-eyebrow">Sanya · Hainan · Since 2018</p>
+                    <h1 class="hero-title">用温度做技术<span>流云智炬科技</span></h1>
+                    <p class="hero-desc">海南三亚 · 企业数字化服务伙伴<br>网站开发 / 小程序开发 / AI智能客服</p>
+                    <div class="hero-actions">
+                        <a href="#pricing" class="btn btn-primary">查看报价方案</a>
+                        <a href="#contact" class="btn btn-ghost">免费咨询 →</a>
+                    </div>
                 </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+                <div class="hero-visual">
+                    <div class="hero-img-placeholder"></div>
+                    <div class="hero-floating-tag">明码标价 · 源码交付</div>
+                    <div class="hero-floating-tag2">服务 50+ 客户</div>
+                </div>
             </div>
         </section>
 
-        <!-- ====== 定价套餐 ====== -->
-        <section id="pricing" class="pricing skew-up">
+        <!-- 定价 -->
+        <section id="pricing" class="pricing">
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">PRICING</div>
-                    <h2 class="section-title">透明定价 · <span class="accent">明码标价</span></h2>
-                    <p class="section-subtitle">市场参考价对比，海南本地团队比一线城市便宜30-50%</p>
+                <div class="section-header center">
+                    <p class="section-tag">Transparent Pricing</p>
+                    <h2 class="section-title">透明定价 · <em>明码标价</em></h2>
+                    <p class="section-sub">海南本地团队，比一线城市便宜 30–50%，源码·域名·服务器全部交付</p>
                 </div>
-
-                <!-- Tab 切换 -->
                 <div class="pricing-tabs">
-                    <button class="pricing-tab active" onclick="switchPricingTab('web')">🌐 网站开发</button>
-                    <button class="pricing-tab" onclick="switchPricingTab('mp')">📱 小程序开发</button>
+                    <button class="pricing-tab active" onclick="switchPricingTab('web')">网站开发</button>
+                    <button class="pricing-tab" onclick="switchPricingTab('mp')">小程序开发</button>
                 </div>
 
-                <!-- 网站套餐 -->
                 <div class="pricing-grid active" id="pricing-web">
-                    <div class="price-card">
-                        <div class="price-name">A1 · 体验版</div>
-                        <div class="price-amount">¥3,800</div>
-                        <div class="price-market">市场 ¥5,000~8,000</div>
-                        <div class="price-desc">极简品牌展示</div>
-                        <div class="price-meta">1页 · 3天交付</div>
-                        <ul class="price-features">
-                            <li>单页滚动设计</li>
-                            <li>移动端适配</li>
-                            <li>域名 1年</li>
-                            <li>服务器 1年</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-name">A2 · 初创版</div>
-                        <div class="price-amount">¥6,800</div>
-                        <div class="price-market">市场 ¥8,000~12,000</div>
-                        <div class="price-desc">初创企业首选</div>
-                        <div class="price-meta">5页 · 7天交付</div>
-                        <ul class="price-features">
-                            <li>首页+关于+服务+案例+联系</li>
-                            <li>CMS后台（基础版）</li>
-                            <li>SEO基础优化</li>
-                            <li>域名+服务器 1年</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
-                    <div class="price-card featured">
-                        <div class="price-name">B1 · 品牌版</div>
-                        <div class="price-amount">¥12,800</div>
-                        <div class="price-market">市场 ¥15,000~25,000</div>
-                        <div class="price-desc">成长型企业品牌升级</div>
-                        <div class="price-meta">8页 · 12天交付</div>
-                        <ul class="price-features">
-                            <li>原创UI设计</li>
-                            <li>CMS后台完整版</li>
-                            <li>SEO深度优化 + 博客系统</li>
-                            <li>赠送AI客服（50问答）</li>
-                            <li>在线留言/表单</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-primary">获取方案</a>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-name">B2 · 专业版</div>
-                        <div class="price-amount">¥19,800</div>
-                        <div class="price-market">市场 ¥25,000~40,000</div>
-                        <div class="price-desc">中大型/外贸公司</div>
-                        <div class="price-meta">15页 · 18天交付</div>
-                        <ul class="price-features">
-                            <li>2轮风格提案</li>
-                            <li>CMS + 数据分析面板</li>
-                            <li>SEO + 百度收录</li>
-                            <li>中英双语</li>
-                            <li>AI客服（200问答）</li>
-                            <li>服务器 2年</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-name">C1 · 集团版</div>
-                        <div class="price-amount">¥29,800</div>
-                        <div class="price-market">市场 ¥40,000~80,000</div>
-                        <div class="price-desc">集团/上市企业</div>
-                        <div class="price-meta">20页+ · 25天交付</div>
-                        <ul class="price-features">
-                            <li>3语种</li>
-                            <li>会员系统</li>
-                            <li>API对接（2个内免费）</li>
-                            <li>赠送6个月售后维护</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-name">C2 · 定制版</div>
-                        <div class="price-amount">¥50,000起</div>
-                        <div class="price-market">市场 ¥80,000~150,000</div>
-                        <div class="price-desc">大型平台/特殊需求</div>
-                        <div class="price-meta">不限页 · 按需评估</div>
-                        <ul class="price-features">
-                            <li>电商功能</li>
-                            <li>全部API对接</li>
-                            <li>全部功能</li>
-                            <li>赠送12个月售后维护</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
+                    <div class="price-card"><div class="price-name">A1 · 体验版</div><div class="price-amount">¥3,800</div><div class="price-market">市场 ¥5,000~8,000</div><div class="price-desc">极简品牌展示</div><div class="price-meta">1页 · 3天 · 送域名/服务器1年</div><ul class="price-features"><li>单页滚动设计</li><li>移动端适配</li><li>域名 1年</li><li>服务器 1年</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
+                    <div class="price-card"><div class="price-name">A2 · 初创版</div><div class="price-amount">¥6,800</div><div class="price-market">市场 ¥8,000~12,000</div><div class="price-desc">初创企业首选</div><div class="price-meta">5页 · 7天 · CMS后台</div><ul class="price-features"><li>首页+关于+服务+案例+联系</li><li>CMS后台（基础版）</li><li>SEO基础优化</li><li>域名+服务器 1年</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
+                    <div class="price-card featured"><div class="price-name">B1 · 品牌版</div><div class="price-amount">¥12,800</div><div class="price-market">市场 ¥15,000~25,000</div><div class="price-desc">成长型企业品牌升级</div><div class="price-meta">8页 · 12天 · 原创UI</div><ul class="price-features"><li>一对一原创UI设计</li><li>CMS后台完整版</li><li>SEO深度优化 + 博客系统</li><li>赠送AI客服（50问答）</li><li>在线留言/表单</li></ul><a href="#contact" class="btn btn-primary">获取方案</a></div>
+                    <div class="price-card"><div class="price-name">B2 · 专业版</div><div class="price-amount">¥19,800</div><div class="price-market">市场 ¥25,000~40,000</div><div class="price-desc">中大型/外贸公司</div><div class="price-meta">15页 · 18天 · 服务器2年</div><ul class="price-features"><li>2轮风格提案</li><li>CMS + 数据分析面板</li><li>SEO + 百度收录</li><li>中英双语</li><li>AI客服（200问答）</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
+                    <div class="price-card"><div class="price-name">C1 · 集团版</div><div class="price-amount">¥29,800</div><div class="price-market">市场 ¥40,000~80,000</div><div class="price-desc">集团/上市企业</div><div class="price-meta">20页+ · 25天 · 3语种</div><ul class="price-features"><li>3语种支持</li><li>会员系统</li><li>API对接（2个内免费）</li><li>赠送6个月售后</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
+                    <div class="price-card"><div class="price-name">C2 · 定制版</div><div class="price-amount">¥50,000起</div><div class="price-market">市场 ¥80,000~150,000</div><div class="price-desc">大型平台/特殊需求</div><div class="price-meta">不限页 · 按需 · 全功能</div><ul class="price-features"><li>电商功能</li><li>全部API对接</li><li>全部功能</li><li>赠送12个月售后</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
                 </div>
 
-                <!-- 小程序套餐 -->
                 <div class="pricing-grid" id="pricing-mp">
-                    <div class="price-card">
-                        <div class="price-name">MP1 · 展示版</div>
-                        <div class="price-amount">¥5,800</div>
-                        <div class="price-market">市场定制均价 ¥15,000~30,000</div>
-                        <div class="price-desc">小微企业品牌展示</div>
-                        <div class="price-meta">5页 · 7天</div>
-                        <ul class="price-features">
-                            <li>企业展示</li>
-                            <li>一键拨号</li>
-                            <li>一键导航</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
-                    <div class="price-card featured">
-                        <div class="price-name">MP2 · 基础功能版</div>
-                        <div class="price-amount">¥9,800</div>
-                        <div class="price-market">市场定制均价 ¥30,000~50,000</div>
-                        <div class="price-desc">服务型/预约型企业</div>
-                        <div class="price-meta">8页 · 12天</div>
-                        <ul class="price-features">
-                            <li>预约/报名/留言</li>
-                            <li>用户系统</li>
-                            <li>CMS后台管理</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-primary">获取方案</a>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-name">MP3 · 电商标准版</div>
-                        <div class="price-amount">¥18,800</div>
-                        <div class="price-market">市场定制均价 ¥50,000~80,000</div>
-                        <div class="price-desc">中小电商/零售</div>
-                        <div class="price-meta">15页 · 18天</div>
-                        <ul class="price-features">
-                            <li>商品管理 + 库存</li>
-                            <li>购物车 + 微信支付</li>
-                            <li>订单管理 + 优惠券</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-name">MP4 · 电商专业版</div>
-                        <div class="price-amount">¥29,800</div>
-                        <div class="price-market">市场定制均价 ¥80,000~150,000</div>
-                        <div class="price-desc">品牌电商/连锁</div>
-                        <div class="price-meta">不限页 · 25天</div>
-                        <ul class="price-features">
-                            <li>多规格/组合商品</li>
-                            <li>微信 + 支付宝支付</li>
-                            <li>拼团 + 秒杀 + 优惠券</li>
-                            <li>会员积分 + 等级</li>
-                            <li>二级分销 + 数据看板</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-name">MP5 · 多商户平台版</div>
-                        <div class="price-amount">¥48,000起</div>
-                        <div class="price-market">市场参考价 ¥100,000~200,000</div>
-                        <div class="price-desc">本地生活/行业平台</div>
-                        <div class="price-meta">按需评估</div>
-                        <ul class="price-features">
-                            <li>多商户入驻</li>
-                            <li>平台抽佣</li>
-                            <li>商户管理后台</li>
-                        </ul>
-                        <a href="#contact" class="btn btn-outline">获取方案</a>
-                    </div>
+                    <div class="price-card"><div class="price-name">MP1 · 展示版</div><div class="price-amount">¥5,800</div><div class="price-market">市场 ¥15,000~30,000</div><div class="price-desc">小微企业品牌展示</div><div class="price-meta">5页 · 7天</div><ul class="price-features"><li>企业展示</li><li>一键拨号</li><li>一键导航</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
+                    <div class="price-card featured"><div class="price-name">MP2 · 基础功能版</div><div class="price-amount">¥9,800</div><div class="price-market">市场 ¥30,000~50,000</div><div class="price-desc">服务型/预约型企业</div><div class="price-meta">8页 · 12天</div><ul class="price-features"><li>预约/报名/留言</li><li>用户系统</li><li>CMS后台管理</li></ul><a href="#contact" class="btn btn-primary">获取方案</a></div>
+                    <div class="price-card"><div class="price-name">MP3 · 电商标准版</div><div class="price-amount">¥18,800</div><div class="price-market">市场 ¥50,000~80,000</div><div class="price-desc">中小电商/零售</div><div class="price-meta">15页 · 18天</div><ul class="price-features"><li>商品管理 + 库存</li><li>购物车 + 微信支付</li><li>订单管理 + 优惠券</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
+                    <div class="price-card"><div class="price-name">MP4 · 电商专业版</div><div class="price-amount">¥29,800</div><div class="price-market">市场 ¥80,000~150,000</div><div class="price-desc">品牌电商/连锁</div><div class="price-meta">不限页 · 25天</div><ul class="price-features"><li>多规格/组合商品</li><li>微信+支付宝双支付</li><li>拼团+秒杀+优惠券</li><li>会员积分+二级分销</li><li>数据看板</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
+                    <div class="price-card"><div class="price-name">MP5 · 多商户平台版</div><div class="price-amount">¥48,000起</div><div class="price-market">市场 ¥100,000~200,000</div><div class="price-desc">本地生活/行业平台</div><div class="price-meta">按需评估</div><ul class="price-features"><li>多商户入驻</li><li>平台抽佣</li><li>商户管理后台</li></ul><a href="#contact" class="btn btn-outline">获取方案</a></div>
                 </div>
             </div>
         </section>
 
-        <!-- ====== 行业方案 ====== -->
-        <section id="industries" class="industries skew-down">
+        <!-- 行业方案 -->
+        <section id="industries" class="industries">
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">INDUSTRIES</div>
-                    <h2 class="section-title">行业专属 <span class="accent">解决方案</span></h2>
-                    <p class="section-subtitle">在标准套餐基础上叠加行业功能包，精准匹配业务需求</p>
+                <div class="section-header center">
+                    <p class="section-tag">Industry Solutions</p>
+                    <h2 class="section-title">行业专属 <em>解决方案</em></h2>
+                    <p class="section-sub">标准套餐 + 行业功能包，精准匹配业务需求</p>
                 </div>
                 <div class="industries-grid">
-                    <div class="industry-card" style="grid-column:1;grid-row:1/3;">
+                    <div class="industry-card">
                         <div class="industry-icon">🏨</div>
                         <div class="industry-name">酒店民宿</div>
                         <div class="industry-price">+¥5,000</div>
                         <div class="industry-features">房型管理 · 预订日历 · 在线支付 · 周边推荐</div>
-                        <div class="industry-base">推荐 A2初创版 ¥6,800 或 B1品牌版 ¥12,800<br>综合报价 ¥11,800 起</div>
+                        <div class="industry-base">推荐 A2 ¥6,800 或 B1 ¥12,800<br>综合报价 ¥11,800 起</div>
                     </div>
                     <div class="industry-card">
                         <div class="industry-icon">🍽️</div>
                         <div class="industry-name">餐饮美食</div>
                         <div class="industry-price">+¥6,000</div>
                         <div class="industry-features">扫码点餐 · 后厨打印 · 排队系统 · 堂食管理</div>
-                        <div class="industry-base">推荐 MP2基础功能版 ¥9,800<br>综合报价 ¥15,800 起</div>
+                        <div class="industry-base">推荐 MP2 ¥9,800<br>综合报价 ¥15,800</div>
                     </div>
                     <div class="industry-card">
                         <div class="industry-icon">🛍️</div>
                         <div class="industry-name">零售商贸</div>
                         <div class="industry-price">+¥8,000</div>
                         <div class="industry-features">多门店库存 · 会员储值 · 积分兑换 · 收银台</div>
-                        <div class="industry-base">推荐 MP3电商标准版 ¥18,800<br>综合报价 ¥26,800 起</div>
+                        <div class="industry-base">推荐 MP3 ¥18,800<br>综合报价 ¥26,800</div>
                     </div>
                     <div class="industry-card">
                         <div class="industry-icon">💼</div>
                         <div class="industry-name">企业服务</div>
                         <div class="industry-price">+¥3,000</div>
-                        <div class="industry-features">AI智能客服 · 在线预约 · 案例管理 · 服务评价</div>
-                        <div class="industry-base">推荐 B1品牌版 ¥12,800<br>综合报价 ¥15,800 起</div>
+                        <div class="industry-features">AI客服 · 在线预约 · 案例管理 · 服务评价</div>
+                        <div class="industry-base">推荐 B1 ¥12,800<br>综合报价 ¥15,800</div>
                     </div>
                     <div class="industry-card">
                         <div class="industry-icon">🏠</div>
                         <div class="industry-name">房产家装</div>
                         <div class="industry-price">+¥8,000</div>
-                        <div class="industry-features">楼盘管理 · VR嵌入 · 置业顾问分配 · 预约看房</div>
-                        <div class="industry-base">推荐 B1品牌版 ¥12,800<br>综合报价 ¥20,800 起</div>
+                        <div class="industry-features">楼盘管理 · VR嵌入 · 顾问分配 · 预约看房</div>
+                        <div class="industry-base">推荐 B1 ¥12,800<br>综合报价 ¥20,800</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ====== 组合优惠 ====== -->
-        <section id="combos" class="combos skew-up">
+        <!-- 组合优惠 -->
+        <section class="combos">
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">BUNDLE SAVE</div>
-                    <h2 class="section-title">网站+小程序 <span class="accent">组合优惠</span></h2>
-                    <p class="section-subtitle">打包更划算，后台数据打通，统一管理</p>
+                <div class="section-header center">
+                    <p class="section-tag">Bundle & Save</p>
+                    <h2 class="section-title">网站 + 小程序 <em>组合更划算</em></h2>
+                    <p class="section-sub">后台数据打通，统一管理，比分开做省钱</p>
                 </div>
                 <div class="combos-grid">
-                    <div class="combo-card">
-                        <div class="combo-icon">🚀</div>
-                        <div class="combo-name">初创组合</div>
-                        <div class="combo-content">网站A1 + 小程序MP1</div>
-                        <div class="combo-price">¥8,000</div>
-                        <div class="combo-save">省 ¥1,600</div>
-                    </div>
-                    <div class="combo-card featured">
-                        <div class="combo-icon">⭐</div>
-                        <div class="combo-name">成长组合</div>
-                        <div class="combo-content">网站A2 + 小程序MP2</div>
-                        <div class="combo-price">¥14,000</div>
-                        <div class="combo-save">省 ¥2,600</div>
-                    </div>
-                    <div class="combo-card">
-                        <div class="combo-icon">💎</div>
-                        <div class="combo-name">品牌组合</div>
-                        <div class="combo-content">网站B1 + 小程序MP3</div>
-                        <div class="combo-price">¥27,000</div>
-                        <div class="combo-save">省 ¥4,600</div>
-                    </div>
-                    <div class="combo-card">
-                        <div class="combo-icon">👑</div>
-                        <div class="combo-name">旗舰组合</div>
-                        <div class="combo-content">网站B2 + 小程序MP4</div>
-                        <div class="combo-price">¥42,000</div>
-                        <div class="combo-save">省 ¥7,600</div>
-                    </div>
+                    <div class="combo-card"><div class="combo-icon">🚀</div><div class="combo-name">初创组合</div><div class="combo-content">网站A1 + 小程序MP1</div><div class="combo-price">¥8,000</div><div class="combo-save">省 ¥1,600</div></div>
+                    <div class="combo-card featured"><div class="combo-icon">⭐</div><div class="combo-name">成长组合</div><div class="combo-content">网站A2 + 小程序MP2</div><div class="combo-price">¥14,000</div><div class="combo-save">省 ¥2,600</div></div>
+                    <div class="combo-card"><div class="combo-icon">💎</div><div class="combo-name">品牌组合</div><div class="combo-content">网站B1 + 小程序MP3</div><div class="combo-price">¥27,000</div><div class="combo-save">省 ¥4,600</div></div>
+                    <div class="combo-card"><div class="combo-icon">👑</div><div class="combo-name">旗舰组合</div><div class="combo-content">网站B2 + 小程序MP4</div><div class="combo-price">¥42,000</div><div class="combo-save">省 ¥7,600</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ====== 为什么选择我们 ====== -->
-        <section id="advantages" class="advantages skew-down">
+        <!-- 优势 -->
+        <section class="advantages">
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">WHY US</div>
-                    <h2 class="section-title">为什么选择 <span class="accent">流云智炬</span></h2>
-                    <p class="section-subtitle">不只建站，更是你的数字化伙伴</p>
+                <div class="section-header center">
+                    <p class="section-tag">Why Choose Us</p>
+                    <h2 class="section-title">不只建站，<em>更是伙伴</em></h2>
                 </div>
                 <div class="advantages-grid">
-                    <div class="adv-card">
-                        <div class="adv-icon">📦</div>
-                        <div class="adv-title">源码交付</div>
-                        <div class="adv-desc">网站是你的，不是租的。源码、域名、服务器全部交付到你名下</div>
-                    </div>
-                    <div class="adv-card">
-                        <div class="adv-icon">🎨</div>
-                        <div class="adv-title">原创设计</div>
-                        <div class="adv-desc">一对一沟通，拒绝模板套用。每一页都是为你量身打造</div>
-                    </div>
-                    <div class="adv-card">
-                        <div class="adv-icon">📍</div>
-                        <div class="adv-title">海南本地</div>
-                        <div class="adv-desc">三亚团队实时响应，没有一线城市30-50%的溢价</div>
-                    </div>
-                    <div class="adv-card">
-                        <div class="adv-icon">💎</div>
-                        <div class="adv-title">价格透明</div>
-                        <div class="adv-desc">明码标价 + 市场参考价对比，无隐藏收费</div>
-                    </div>
-                    <div class="adv-card">
-                        <div class="adv-icon">🛡️</div>
-                        <div class="adv-title">售后保障</div>
-                        <div class="adv-desc">免费售后3个月，Bug 1工作日内修复，7天/30天/90天回访</div>
-                    </div>
-                    <div class="adv-card">
-                        <div class="adv-icon">🔒</div>
-                        <div class="adv-title">数据保护</div>
-                        <div class="adv-desc">合同明确数据保护条款，违约万分之五/天，你的数据你做主</div>
-                    </div>
-                    <div class="adv-card">
-                        <div class="adv-icon">🤖</div>
-                        <div class="adv-title">AI智能客服</div>
-                        <div class="adv-desc">B1及以上套餐免费赠送AI客服，24小时在线接待客户</div>
-                    </div>
+                    <div class="adv-card"><div class="adv-icon">📦</div><div class="adv-title">源码交付</div><div class="adv-desc">网站是你的，不是租的。源码、域名、服务器全部交付到你名下。</div></div>
+                    <div class="adv-card"><div class="adv-icon">🎨</div><div class="adv-title">原创设计</div><div class="adv-desc">一对一沟通，拒绝模板套用。每一页都为你量身打造。</div></div>
+                    <div class="adv-card"><div class="adv-icon">📍</div><div class="adv-title">海南本地</div><div class="adv-desc">三亚团队实时响应，没有一线城市 30–50% 的溢价。</div></div>
+                    <div class="adv-card"><div class="adv-icon">💎</div><div class="adv-title">价格透明</div><div class="adv-desc">明码标价 + 市场参考价对比，无隐藏收费，报价单清清楚楚。</div></div>
+                    <div class="adv-card"><div class="adv-icon">🛡️</div><div class="adv-title">售后保障</div><div class="adv-desc">免费售后 3 个月，Bug 1 工作日内修复。7/30/90 天定期回访。</div></div>
+                    <div class="adv-card"><div class="adv-icon">🔒</div><div class="adv-title">数据保护</div><div class="adv-desc">合同明确数据保护条款，违约万分之五/天。你的数据你做主。</div></div>
+                    <div class="adv-card"><div class="adv-icon">🤖</div><div class="adv-title">AI客服</div><div class="adv-desc">B1 及以上套餐免费赠送 AI 客服，24 小时在线接待你的客户。</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ====== 合作流程 ====== -->
-        <section id="process" class="process">
+        <!-- 大引语 -->
+        <section class="quote-section">
+            <p class="quote-text">"不追求花里胡哨，只做真正好用的产品。<br>每一个项目，都当成自己的一样用心。"</p>
+            <p class="quote-author">— 流云智炬科技</p>
+        </section>
+
+        <!-- 流程 -->
+        <section class="process">
             <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">PROCESS</div>
-                    <h2 class="section-title">合作 <span class="accent">流程</span></h2>
-                    <p class="section-subtitle">7步搞定，工期3-25个工作日</p>
+                <div class="section-header center">
+                    <p class="section-tag">How We Work</p>
+                    <h2 class="section-title">合作 <em>流程</em></h2>
+                    <p class="section-sub">7 步搞定，工期 3–25 个工作日</p>
                 </div>
-                <div class="process-timeline">
-                    <div class="process-step">
-                        <div class="process-num">01</div>
-                        <div class="process-label">需求沟通</div>
-                        <div class="process-desc">行业/功能/预算/风格</div>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-num">02</div>
-                        <div class="process-label">方案报价</div>
-                        <div class="process-desc">1个工作日出方案</div>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-num">03</div>
-                        <div class="process-label">签约启动</div>
-                        <div class="process-desc">签合同+付首付</div>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-num">04</div>
-                        <div class="process-label">UI设计</div>
-                        <div class="process-desc">首页设计→反馈→定稿</div>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-num">05</div>
-                        <div class="process-label">开发测试</div>
-                        <div class="process-desc">前后端→联调→内测</div>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-num">06</div>
-                        <div class="process-label">验收上线</div>
-                        <div class="process-desc">验收→部署→培训</div>
-                    </div>
-                    <div class="process-step">
-                        <div class="process-num">07</div>
-                        <div class="process-label">售后服务</div>
-                        <div class="process-desc">免费3个月+回访</div>
-                    </div>
+                <div class="process-grid">
+                    <div class="process-step"><div class="process-num">01</div><div class="process-label">需求沟通</div><div class="process-desc">行业/功能/预算</div></div>
+                    <div class="process-step"><div class="process-num">02</div><div class="process-label">方案报价</div><div class="process-desc">1个工作日出</div></div>
+                    <div class="process-step"><div class="process-num">03</div><div class="process-label">签约启动</div><div class="process-desc">合同+素材</div></div>
+                    <div class="process-step"><div class="process-num">04</div><div class="process-label">UI设计</div><div class="process-desc">首页→定稿</div></div>
+                    <div class="process-step"><div class="process-num">05</div><div class="process-label">开发测试</div><div class="process-desc">前后端→联调</div></div>
+                    <div class="process-step"><div class="process-num">06</div><div class="process-label">验收上线</div><div class="process-desc">部署+培训</div></div>
+                    <div class="process-step"><div class="process-num">07</div><div class="process-label">售后服务</div><div class="process-desc">免费3个月</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- ====== 作品集 ====== -->
+        <!-- 作品集 -->
         <section id="portfolio" class="portfolio">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-badge">PORTFOLIO</div>
-                    <h2 class="section-title">精选 <span class="accent">作品</span></h2>
-                    <p class="section-subtitle">50+客户的信任，用心交付每一个项目</p>
+                    <p class="section-tag">Selected Works</p>
+                    <h2 class="section-title" style="margin-bottom:0.5rem;">精选 <em>作品</em></h2>
+                    <p class="section-sub">50+ 客户的信任，用心交付每一个项目</p>
                 </div>
                 <div class="portfolio-filter">
                     <button class="filter-btn active" data-filter="all">全部</button>
@@ -446,70 +207,35 @@
                 </div>
                 <div class="portfolio-grid">
                     <div class="portfolio-item" data-category="website">
-                        <div class="portfolio-image">
-                            <div class="portfolio-overlay">
-                                <div class="portfolio-content">
-                                    <h3>企业品牌官网</h3>
-                                    <p>全栈企业官网解决方案，多端适配</p>
-                                    <div class="portfolio-tags"><span>React</span><span>Node.js</span><span>SEO</span></div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="portfolio-info"><h3>企业品牌官网</h3><p>全栈企业官网 · 多端适配</p></div>
                     </div>
                     <div class="portfolio-item" data-category="design">
-                        <div class="portfolio-image">
-                            <div class="portfolio-overlay">
-                                <div class="portfolio-content">
-                                    <h3>企业品牌VI设计</h3>
-                                    <p>完整的品牌视觉识别系统</p>
-                                    <div class="portfolio-tags"><span>UI设计</span><span>品牌设计</span></div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="portfolio-info"><h3>品牌 VI 设计</h3><p>完整视觉识别系统</p></div>
                     </div>
                     <div class="portfolio-item" data-category="miniapp">
-                        <div class="portfolio-image">
-                            <div class="portfolio-overlay">
-                                <div class="portfolio-content">
-                                    <h3>民宿预订小程序</h3>
-                                    <p>在线选房+预订+支付全链路</p>
-                                    <div class="portfolio-tags"><span>微信小程序</span><span>支付</span></div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="portfolio-info"><h3>民宿预订小程序</h3><p>在线选房 + 预订 + 支付</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ====== 关于我们 ====== -->
+        <!-- 关于我们 -->
         <section id="about" class="about">
             <div class="container">
-                <div class="about-content">
+                <div class="about-grid">
                     <div class="about-text">
-                        <div class="section-header" style="text-align:left;margin-bottom:2rem;">
-                            <div class="section-badge">ABOUT</div>
-                            <h2 class="section-title">关于 <span class="accent">流云智炬</span></h2>
-                        </div>
-                        <p class="about-description">
-                            我们是位于海南省三亚市的专业互联网工作室。"流云"代表创意如云般灵动自由，"智炬"象征技术智慧如火炬般照亮前路。8年+技术积累，50+客户信赖。
+                        <p class="section-tag">About Us</p>
+                        <h2 class="section-title">关于 <em>流云智炬</em></h2>
+                        <p class="about-desc">
+                            位于海南省三亚市的专业互联网工作室。<strong>"流云"</strong>代表创意如云般灵动自由，<strong>"智炬"</strong>象征技术智慧如火炬般照亮前路。<br><br>8 年+ 技术积累，服务 50+ 客户，涵盖酒店民宿、餐饮、零售、企业服务等多个行业。
                         </p>
-                        <div class="stats">
-                            <div class="stat-item">
-                                <h3 class="stat-number">50+</h3>
-                                <p class="stat-label">服务客户</p>
-                            </div>
-                            <div class="stat-item">
-                                <h3 class="stat-number">8年+</h3>
-                                <p class="stat-label">技术积累</p>
-                            </div>
-                            <div class="stat-item">
-                                <h3 class="stat-number">三亚</h3>
-                                <p class="stat-label">海南本地团队</p>
-                            </div>
+                        <div class="stats-row">
+                            <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">服务客户</div></div>
+                            <div class="stat-item"><div class="stat-number">8年+</div><div class="stat-label">技术积累</div></div>
+                            <div class="stat-item"><div class="stat-number">三亚</div><div class="stat-label">本地团队</div></div>
                         </div>
                         <div class="tech-stack">
-                            <h3>技术栈</h3>
+                            <p class="tech-stack-label">技术栈</p>
                             <div class="tech-icons">
                                 <i class="fab fa-html5" title="HTML5"></i>
                                 <i class="fab fa-css3-alt" title="CSS3"></i>
@@ -522,59 +248,35 @@
                             </div>
                         </div>
                     </div>
-                    <div class="about-image">
-                        <div class="tech-showcase">
-                            <div class="code-lines">
-                                <div class="code-line"></div>
-                                <div class="code-line"></div>
-                                <div class="code-line"></div>
-                                <div class="code-line"></div>
-                                <div class="code-line"></div>
-                            </div>
-                            <div class="floating-elements">
-                                <div class="element html">&lt;/&gt;</div>
-                                <div class="element js">{}</div>
-                                <div class="element css">#</div>
-                            </div>
-                            <i class="fas fa-laptop-code main-icon"></i>
-                        </div>
+                    <div class="about-visual">
+                        <div class="about-visual-main"></div>
+                        <div class="about-visual-accent"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ====== 联系我们（完整保留 HTML 结构） ====== -->
+        <!-- 联系我们（完整保留结构） -->
         <section id="contact" class="contact">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">联系我们</h2>
-                    <p class="section-subtitle">让我们一起创造令人惊叹的数字体验</p>
+                <div class="section-header center">
+                    <p class="section-tag">Get In Touch</p>
+                    <h2 class="section-title">联系 <em>我们</em></h2>
+                    <p class="section-sub">让我们一起创造令人惊叹的数字体验</p>
                 </div>
-                <div class="contact-content">
-                    <div class="contact-info">
+                <div class="contact-grid">
+                    <div class="contact-info-col">
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>地址</h3>
-                                <p>海南省三亚市</p>
-                            </div>
+                            <div class="contact-icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="contact-text-detail"><h3>地址</h3><p>海南省三亚市</p></div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>邮箱</h3>
-                                <p>296077990@qq.com</p>
-                            </div>
+                            <div class="contact-icon-circle"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-text-detail"><h3>邮箱</h3><p>296077990@qq.com</p></div>
                         </div>
                         <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fab fa-weixin"></i>
-                            </div>
-                            <div class="contact-text">
+                            <div class="contact-icon-circle"><i class="fab fa-weixin"></i></div>
+                            <div class="contact-text-detail">
                                 <h3>企业微信</h3>
                                 <div class="qr-code">
                                     <img src="企业.png" alt="企业微信二维码" title="扫码添加企业微信">
@@ -599,7 +301,7 @@
                             <div class="form-group">
                                 <textarea id="message" name="message" placeholder="请详细描述您的需求..." rows="6" required></textarea>
                             </div>
-                            <button type="button" id="submitBtn" class="btn btn-primary">
+                            <button type="button" id="submitBtn">
                                 <span>发送消息</span>
                                 <i class="fas fa-paper-plane"></i>
                             </button>
@@ -611,19 +313,18 @@
         </section>
     </main>
 
-    <!-- 页脚（保留备案号 + 邮箱） -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>流云智炬科技</h3>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>流云智炬科技</h4>
                     <p>用温度做技术 · 海南自贸港企业数字化服务伙伴</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-weixin"></i></a>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-weixin"></i></a>
                     </div>
                 </div>
-                <div class="footer-section">
+                <div class="footer-col">
                     <h4>快速链接</h4>
                     <ul>
                         <li><a href="#home">首页</a></li>
@@ -632,7 +333,7 @@
                         <li><a href="#contact">联系我们</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
+                <div class="footer-col">
                     <h4>联系方式</h4>
                     <ul>
                         <li><i class="fas fa-envelope"></i> 296077990@qq.com</li>
@@ -656,7 +357,6 @@
             </svg>
             <span class="ai-badge">AI</span>
         </button>
-
         <div class="ai-chat-window" id="aiChatWindow">
             <div class="chat-header">
                 <div class="chat-title">小炬 · AI 顾问</div>
@@ -665,13 +365,11 @@
                     <button class="chat-clear" onclick="document.getElementById('aiChatWindow').classList.remove('active');document.getElementById('chatMessages').innerHTML='<div class=message message-ai><div class=message-content>重新来～有啥想聊的尽管说 😊</div></div>';localStorage.removeItem('ai-chat-history');">✕</button>
                 </div>
             </div>
-
             <div class="chat-messages" id="chatMessages">
                 <div class="message message-ai">
                     <div class="message-content">嗨～我是小炬！想了解啥随便问，网站、小程序、合作都行 😊</div>
                 </div>
             </div>
-
             <div class="chat-input-area">
                 <input type="text" class="chat-input" id="chatInput" placeholder="想聊点啥？">
                 <button class="chat-send" id="chatSend">➤</button>
