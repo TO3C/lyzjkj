@@ -1,14 +1,11 @@
 // 等待DOM加载完成
 document.addEventListener('DOMContentLoaded', function() {
-    // 初始化所有功能
     initMobileMenu();
     initSmoothScrolling();
     initActiveNavLink();
     initScrollAnimations();
     initPortfolioFilter();
     initContactForm();
-    initParticles();
-    initGlitchEffect();
     initTechIconsAnimation();
     initScrollProgress();
 });
@@ -958,3 +955,14 @@ function addQuickReplies() {
 }
 
 if (document.getElementById('aiChatWidget')) loadChatHistory();
+
+// ====== 定价Tab切换 ======
+function switchPricingTab(tab) {
+    document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pricing-grid').forEach(g => g.classList.remove('active'));
+    var targetGrid = document.getElementById('pricing-' + tab);
+    if (targetGrid) targetGrid.classList.add('active');
+    var tabs = document.querySelectorAll('.pricing-tab');
+    if (tab === 'web' && tabs[0]) tabs[0].classList.add('active');
+    if (tab === 'mp' && tabs[1]) tabs[1].classList.add('active');
+}
