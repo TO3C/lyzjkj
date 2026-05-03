@@ -13,7 +13,7 @@ exports.main = async (event) => {
   }
 
   try {
-    const app = cloudbase.init();
+    const app = cloudbase.init({ env: 'cloud1-0ggg2niq36a70b37' });
     const db = app.database();
 
     await db.collection('contacts').add({

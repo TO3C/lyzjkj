@@ -617,7 +617,7 @@ async function initCloudBase() {
     return;
   }
   try {
-    var app = cloudbase.init({ env: 'lyzjkj-top-7g2o2uud420b1470' });
+    var app = cloudbase.init({ env: 'cloud1-0ggg2niq36a70b37' });
     var auth = app.auth();
     await auth.anonymousAuthProvider().signIn();
     window._cloudbaseDb = app.database();
