@@ -185,10 +185,10 @@
   injectHeader();
 
   // 页脚 + AI挂件 + 移动端菜单：placeholder 在脚本之后，需等 DOM 就绪
+  // 注意：AI 聊天的事件绑定由 app.js 的 initAIChat() 统一管理，此处只做 DOM 注入
   document.addEventListener('DOMContentLoaded', function() {
     injectFooter();
     injectChatWidget();
-    initChatWidgetButtons();
     initMobileMenu();
   });
 })();
