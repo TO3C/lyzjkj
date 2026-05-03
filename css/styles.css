@@ -562,6 +562,40 @@ section { padding: 5rem 0; }
 .ai-pricing-grid .price-card { text-align: center; }
 .ai-pricing-grid .price-card .btn { margin: 0 auto; }
 
+/* 定价备注 */
+.pricing-note {
+	text-align: center; margin-top: 2rem; padding: 0.75rem 1.25rem;
+	background: rgba(198,122,75,0.04); border: 1px solid var(--border-warm);
+	font-size: 0.8rem; color: var(--ink-muted);
+	display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.pricing-note i { color: var(--terracotta); font-size: 0.85rem; flex-shrink: 0; }
+.pricing-note strong { color: var(--brown); }
+
+/* 企业服务 */
+.enterprise-services { background: var(--cream); }
+.enterprise-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.enterprise-card {
+	background: var(--warm-white); border: 1px solid var(--border);
+	padding: 2rem; transition: all 0.3s;
+	display: flex; flex-direction: column;
+}
+.enterprise-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--border-warm); }
+.enterprise-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.enterprise-title { font-family: 'Noto Serif SC', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--brown); }
+.enterprise-desc { color: var(--ink-muted); font-size: 0.85rem; line-height: 1.8; margin-bottom: 1rem; }
+.enterprise-features { list-style: none; margin-bottom: 1.25rem; flex: 1; }
+.enterprise-features li {
+	padding: 0.3rem 0; color: var(--brown); font-size: 0.82rem;
+	padding-left: 1rem; position: relative;
+}
+.enterprise-features li::before { content: '—'; position: absolute; left: 0; color: var(--terracotta); font-size: 0.6rem; }
+.enterprise-price {
+	font-size: 1.3rem; font-weight: 800; color: var(--terracotta);
+	padding-top: 1rem; border-top: 1px solid var(--border);
+	margin-top: auto; text-align: center;
+}
+
 /* CTA卡片 */
 .ai-cta, .works-cta { background: var(--cream); }
 .cta-card {
@@ -667,6 +701,8 @@ section { padding: 5rem 0; }
 	.works-stats { gap: 1.5rem; flex-wrap: wrap; }
 	.portfolio-grid { grid-template-columns: 1fr; }
 	.ai-pricing-grid { grid-template-columns: 1fr; }
+	.enterprise-grid { grid-template-columns: 1fr; }
+	.pricing-note { flex-direction: column; text-align: left; font-size: 0.75rem; }
 	.cta-card { padding: 2rem 1.5rem; }
 	.cta-card h2 { font-size: 1.2rem; }
 	.modal-content { max-width: 100%; }
