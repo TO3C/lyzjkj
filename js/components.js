@@ -181,13 +181,14 @@
   }
 
   // ====== 执行注入 ======
+  // 导航栏：立即注入（header-placeholder 在脚本之前，已解析）
   injectHeader();
-  injectFooter();
-  injectChatWidget();
-  initChatWidgetButtons();
 
-  // 移动端菜单在 DOMContentLoaded 后再绑定一次确保生效
+  // 页脚 + AI挂件 + 移动端菜单：placeholder 在脚本之后，需等 DOM 就绪
   document.addEventListener('DOMContentLoaded', function() {
+    injectFooter();
+    injectChatWidget();
+    initChatWidgetButtons();
     initMobileMenu();
   });
 })();
