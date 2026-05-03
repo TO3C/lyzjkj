@@ -661,11 +661,184 @@ if (techShowcase) {
     observer.observe(techShowcase);
 }
 
-// AI Chat Widget - AI 云函数接口
+// ====== AI聊天引擎 V3.0（三层架构：本地KB → 云端API → 智能回退） ======
 const AI_CHAT_API = 'https://cloud1-0ggg2niq36a70b37.service.tcloudbase.com/ai-chat';
-let chatHistory = []; // 对话上下文（最多存10轮）
+let chatHistory = [];
 
+// ====== 本地知识库 V3.0（同步 AI知识库_官网客服_V3.0.md） ======
+const AI_KB = {
+    company: {
+        name:'三亚流云智炬科技工作室', slogan:'用温度做技术',
+        addr:'海南省三亚市', tel:'13876597418', wx:'Lyzjkj',
+        email:'296077990@qq.com', web:'www.lyzjkj.top',
+        hours:'周一至周五 9:00-18:00',
+    },
+    webPricing: [
+        { name:'A1·体验版', price:'¥3,800', market:'¥5,000~8,000', pages:'1页单页滚动', days:'3天', desc:'极简品牌展示', features:'移动端适配+域名1年+服务器1年' },
+        { name:'A2·初创版 ⭐', price:'¥6,800', market:'¥8,000~12,000', pages:'5页', days:'7天', desc:'初创企业首选', features:'CMS后台+SEO基础+域名1年+服务器1年' },
+        { name:'B1·品牌版 ⭐主推', price:'¥12,800', market:'¥15,000~25,000', pages:'8页', days:'12天', desc:'成长型企业品牌升级', features:'原创UI+CMS完整版+SEO深度+博客系统+AI客服(50问答)+在线留言' },
+        { name:'B2·专业版', price:'¥19,800', market:'¥25,000~40,000', pages:'15页', days:'18天', desc:'中大型/外贸公司', features:'2轮风格提案+数据分析面板+SEO+百度收录+双语(中英)+AI客服(200问答)+服务器2年' },
+        { name:'C1·集团版', price:'¥29,800', market:'¥40,000~80,000', pages:'20页+', days:'25天', desc:'集团/上市企业', features:'3语种+会员系统+API对接+售后6个月' },
+        { name:'C2·定制版', price:'¥50,000起', market:'¥80,000~150,000', pages:'不限', days:'按需', desc:'大型平台/特殊需求', features:'全部功能+电商+售后12个月' },
+    ],
+    mpPricing: [
+        { name:'MP1·展示版', price:'¥5,800', market:'¥15,000~30,000', days:'7天', desc:'小微企业品牌展示', features:'5页+一键拨号+一键导航' },
+        { name:'MP2·基础功能版 ⭐', price:'¥9,800', market:'¥30,000~50,000', days:'12天', desc:'服务型/预约型企业', features:'8页+预约/报名/留言+用户系统+CMS后台' },
+        { name:'MP3·电商标准版', price:'¥18,800', market:'¥50,000~80,000', days:'18天', desc:'中小电商/零售', features:'15页+商品管理+购物车+微信支付+优惠券+订单管理' },
+        { name:'MP4·电商专业版', price:'¥29,800', market:'¥80,000~150,000', days:'25天', desc:'品牌电商/连锁', features:'多规格商品+微信支付宝双支付+拼团秒杀+会员积分+二级分销+数据看板' },
+        { name:'MP5·多商户平台版', price:'¥48,000起', market:'¥100,000~200,000', days:'按需', desc:'本地生活平台', features:'多商户入驻+平台抽佣+商户管理后台' },
+    ],
+    industries: {
+        '酒店民宿':{price:'+¥5,000',features:'房型管理+预订日历+在线支付+周边推荐',base:'推荐 A2初创版 ¥6,800 或 B1品牌版 ¥12,800'},
+        '餐饮美食':{price:'+¥6,000',features:'扫码点餐+后厨打印+排队系统+堂食管理',base:'推荐 MP2基础功能版 ¥9,800'},
+        '零售商贸':{price:'+¥8,000',features:'多门店库存+会员储值+积分兑换+收银台',base:'推荐 MP3电商标准版 ¥18,800'},
+        '企业服务':{price:'+¥3,000',features:'AI智能客服+在线预约+案例管理+服务评价',base:'推荐 B1品牌版 ¥12,800'},
+        '房产家装':{price:'+¥8,000',features:'楼盘管理+VR嵌入+置业顾问分配+预约看房',base:'推荐 B1品牌版 ¥12,800'},
+    },
+    combos: [
+        { name:'初创组合', content:'网站A1+小程序MP1', price:'¥8,000', save:'¥1,600' },
+        { name:'成长组合 ⭐', content:'网站A2+小程序MP2', price:'¥14,000', save:'¥2,600' },
+        { name:'品牌组合', content:'网站B1+小程序MP3', price:'¥27,000', save:'¥4,600' },
+        { name:'旗舰组合', content:'网站B2+小程序MP4', price:'¥42,000', save:'¥7,600' },
+    ],
+    faq: {
+        '源码归谁':'网站前端源码和小程序源码都归您所有，验收后完整交付。域名用您的信息注册，服务器用您的账号购买——网站和小程序都是您自己的资产。',
+        '售后多久':'验收后免费售后3个月。包含：程序Bug修复（1工作日内）、服务器故障排查（2小时内）、安全紧急补丁、使用操作指导。不包含功能新增和内容代更新。',
+        '多久上线':'网站：A1体验版3天 / A2初创版7天 / B1品牌版12天 / B2专业版18天 / C1集团版25天。小程序另加微信审核7-14天（不计入工期）。以上均不含客户反馈时间。',
+        '怎么付款':'≤3万项目：50%首付+50%验收后付。>3万项目：40%首付+30%中期款(设计确认后)+30%尾款(验收后)。支持银行转账、支付宝、微信支付。',
+        '能不能便宜':'我们的价格已经是海南本地特惠价了——同样品质，一线城市贵30-50%。套餐价不打折（品质不打折），但组合购买有优惠（如网站+小程序组合可省¥1,600~7,600），老客户转介绍双方各返¥500。',
+        '合同':'我们使用标准服务合同，明确约定：源码归属、知识产权、数据保护、售后范围、违约条款（万分之五/天）。支持电子签约（法大大/腾讯电子签），也支持纸质合同。',
+        '案例':'有的！我们已服务50+客户，涵盖酒店民宿、餐饮、零售、企业服务等多个行业。可以针对您的行业发相关案例给您参考。',
+        '模板和定制区别':'模板站=租房：源码不是你的，改不了，搬家搬不走，年费越交越多。定制站=买房：源码是你的，想怎么改怎么改，域名服务器都在你名下，一次性付费。',
+        '微信审核':'小程序需提交微信审核（7-14天），这个时间不计入工期。首次审核失败免费修改，我们有丰富的审核经验，通过率很高。',
+        '维护费':'免费售后3个月结束后，可选续费：基础维护 ¥3,600/年（含每月1次内容更新），高级维护 ¥9,800/年（含功能微调+每月3次更新）。也可以按次付费 ¥500/次。',
+    },
+};
+
+// ====== 关键词匹配引擎 ======
+function matchKB(msg) {
+    const m = msg.toLowerCase();
+    // 公司联系方式
+    if (/电话|微信|联系|怎么联系|在哪|地址/.test(m)) {
+        return `📞 电话：${AI_KB.company.tel}<br>💬 微信：${AI_KB.company.wx}<br>📧 邮箱：${AI_KB.company.email}<br>🌐 官网：${AI_KB.company.web}<br>📍 地址：${AI_KB.company.addr}<br>⏰ 工作时间：${AI_KB.company.hours}`;
+    }
+    // 网站报价
+    if (/网站.*(?:多少钱|报价|价格|套餐|收费)|做.*网站.*(?:多少|价格|报价|费用)|网站.*开发/.test(m)) {
+        let r = '<b>🏨 网站开发套餐 V3.0（含市场参考价对比）</b><br><br>';
+        AI_KB.webPricing.forEach(p => {
+            r += `<b>${p.name}</b> <b style="color:var(--primary-color);">${p.price}</b>（市场 ${p.market}）<br>`;
+            r += `　${p.pages} · ${p.days} · ${p.desc}<br>`;
+            r += `　${p.features}<br><br>`;
+        });
+        r += '💡 海南本地团队，比一线城市便宜30-50%<br>💡 源码+域名+服务器全部交付<br>💡 售后3个月免费';
+        return r;
+    }
+    // 小程序报价
+    if (/小程序.*(?:多少钱|报价|价格|套餐|收费)|做.*小程序.*(?:多少|价格|报价|费用)|小程序.*开发/.test(m)) {
+        let r = '<b>📱 小程序开发套餐 V3.0（含市场定制均价对比）</b><br><br>';
+        AI_KB.mpPricing.forEach(p => {
+            r += `<b>${p.name}</b> <b style="color:var(--primary-color);">${p.price}</b>（市场定制均价 ${p.market}）<br>`;
+            r += `　${p.days} · ${p.desc}<br>`;
+            r += `　${p.features}<br><br>`;
+        });
+        r += '💡 源码全部交付，比SaaS年费方案更划算<br>💡 微信审核时间不计入工期';
+        return r;
+    }
+    // 行业匹配
+    if (/民宿|酒店|客栈/.test(m)) {
+        const ind = AI_KB.industries['酒店民宿'];
+        return `<b>🏨 酒店民宿行业方案</b><br><br>${ind.base}<br>+ 行业功能包 <b style="color:var(--primary-color);">${ind.price}</b><br><br>📦 功能包内容：${ind.features}<br><br>💰 综合报价示例：<br>　A2初创版 + 功能包 = <b style="color:var(--primary-color);">¥11,800</b><br>　B1品牌版 + 功能包 = <b style="color:var(--primary-color);">¥17,800</b><br><br>👉 需要针对您的民宿/酒店做具体方案吗？告诉我房间数和需求～`;
+    }
+    if (/餐饮|餐厅|饭店|点餐/.test(m)) {
+        const ind = AI_KB.industries['餐饮美食'];
+        return `<b>🍽️ 餐饮美食行业方案</b><br><br>${ind.base}<br>+ 行业功能包 <b style="color:var(--primary-color);">${ind.price}</b><br><br>📦 功能包内容：${ind.features}<br><br>💰 综合报价：MP2 + 功能包 = <b style="color:var(--primary-color);">¥15,800</b><br><br>👉 需要扫码点餐还是排队叫号？告诉我具体需求～`;
+    }
+    if (/零售|电商|商城|卖东西|开店/.test(m)) {
+        const ind = AI_KB.industries['零售商贸'];
+        return `<b>🛍️ 零售商贸行业方案</b><br><br>${ind.base}<br>+ 行业功能包 <b style="color:var(--primary-color);">${ind.price}</b><br><br>📦 功能包内容：${ind.features}<br><br>💡 如果是纯电商，推荐 MP3电商标准版 ¥18,800 或 MP4电商专业版 ¥29,800<br><br>👉 主要卖什么品类？需要多门店管理吗？`;
+    }
+    // 组合优惠
+    if (/网站.*小程序|小程序.*网站|组合|打包|两个都要/.test(m)) {
+        let r = '<b>🎁 网站+小程序组合优惠</b><br><br>';
+        AI_KB.combos.forEach(c => {
+            r += `<b>${c.name}</b>：${c.content}<br>`;
+            r += `　组合价 <b style="color:var(--primary-color);">${c.price}</b>（节省 ${c.save}）<br><br>`;
+        });
+        r += '💡 组合购买后台数据打通，统一管理';
+        return r;
+    }
+    // FAQ 匹配
+    if (/源码|源代码|代码归谁|归谁|属于谁|域名.*谁|服务器.*谁/.test(m)) return AI_KB.faq['源码归谁'];
+    if (/售后|维护|保修|服务.*多久|坏了.*怎么办|出问题/.test(m)) return AI_KB.faq['售后多久'];
+    if (/多久|工期|时间|上线|几天|什么时候.*好/.test(m)) return AI_KB.faq['多久上线'];
+    if (/付款|支付|怎么.*付|分期|首付/.test(m)) return AI_KB.faq['怎么付款'];
+    if (/便宜|贵|打折|优惠|降价|能不能少/.test(m)) return AI_KB.faq['能不能便宜'];
+    if (/合同|协议|签约|条款|法律/.test(m)) return AI_KB.faq['合同'];
+    if (/案例|作品|客户|做过.*什么|有没有.*案例/.test(m)) return AI_KB.faq['案例'];
+    if (/模板|定制.*区别|淘宝.*区别|SaaS|凡科|上线了/.test(m)) return AI_KB.faq['模板和定制区别'];
+    if (/审核|微信审核|审核.*不过|审核.*多久/.test(m)) return AI_KB.faq['微信审核'];
+    if (/维护费|维护.*多少钱|续费|年费/.test(m)) return AI_KB.faq['维护费'];
+    if (/优势|为什么.*你们|区别|凭什么|好.*哪里/.test(m)) {
+        return `<b>💡 我们的优势</b><br><br>
+✅ <b>源码交付</b>：网站是你的，不是租的<br>
+✅ <b>原创设计</b>：一对一沟通，拒绝模板套用<br>
+✅ <b>海南本地</b>：实时响应，没有一线城市溢价<br>
+✅ <b>价格透明</b>：明码标价，市场参考价对比<br>
+✅ <b>售后保障</b>：免费3个月，Bug 1工作日内修复<br>
+✅ <b>数据保护</b>：合同明确数据保护条款<br>
+✅ <b>AI智能客服</b>：B1及以上套餐免费赠送<br>
+📞 ${AI_KB.company.tel} | 💬 ${AI_KB.company.wx}`;
+    }
+    // 合作流程
+    if (/流程|步骤|怎么.*做|过程/.test(m)) {
+        return `<b>📋 合作流程</b><br><br>
+1️⃣ <b>需求沟通</b>：了解行业/功能/预算/风格<br>
+2️⃣ <b>方案报价</b>：1个工作日内出方案+报价<br>
+3️⃣ <b>签约启动</b>：签合同+付首付，提供素材<br>
+4️⃣ <b>UI设计</b>：首页设计→反馈→定稿→内页设计<br>
+5️⃣ <b>开发测试</b>：前后端开发→联调→内部测试<br>
+6️⃣ <b>验收上线</b>：客户验收→部署上线→操作培训<br>
+7️⃣ <b>售后服务</b>：免费3个月，7天/30天/90天回访<br><br>
+📅 总工期 3-25 个工作日（按套餐不同）`;
+    }
+    // 需求评估引导
+    if (/评估|推荐|建议|适合|不知道.*选|帮我.*选/.test(m)) {
+        return `🤔 <b>帮您快速评估</b><br><br>请告诉我：<br>
+1️⃣ 您是什么行业？（酒店/餐饮/零售/企业服务/其他）<br>
+2️⃣ 主要目的是什么？（品牌展示/在线获客/在线交易）<br>
+3️⃣ 预算大概在什么范围？<br>
+4️⃣ 期望什么时间上线？<br><br>
+💡 也可以直接 📞 ${AI_KB.company.tel} 或 💬 ${AI_KB.company.wx}，我们电话沟通更快～`;
+    }
+    // 打招呼
+    if (/你好|hi|hello|嗨|在吗/.test(m)) {
+        return `你好呀～欢迎来到流云智炬！😊<br><br>
+我们是三亚本地的互联网工作室，专注：<br>
+🌐 企业品牌官网开发<br>
+📱 微信小程序开发<br>
+🤖 AI智能客服<br><br>
+你可以直接问我：<br>
+· "网站开发多少钱？"<br>
+· "民宿小程序方案"<br>
+· "你们有什么优势？"<br>
+· "做网站要多久？"<br><br>
+也可以 📞 ${AI_KB.company.tel} 或 💬 ${AI_KB.company.wx} 直接联系我们～`;
+    }
+    // 无匹配 → 交云端API处理
+    return null;
+}
+
+// ====== 三层智能回复引擎 ======
 async function callAI(message) {
+    // 第一层：本地知识库匹配（毫秒级响应）
+    const kbReply = matchKB(message);
+    if (kbReply) {
+        chatHistory.push({ role: 'user', content: message });
+        chatHistory.push({ role: 'assistant', content: kbReply });
+        if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+        return kbReply;
+    }
+    // 第二层：CloudBase AI 云函数（处理复杂/冷门问题）
     try {
         const res = await fetch(AI_CHAT_API, {
             method: 'POST',
@@ -674,7 +847,6 @@ async function callAI(message) {
         });
         const data = await res.json();
         if (data.code === 200 && data.data && data.data.reply) {
-            // 保存对话上下文
             chatHistory.push({ role: 'user', content: message });
             chatHistory.push({ role: 'assistant', content: data.data.reply });
             if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
@@ -682,35 +854,31 @@ async function callAI(message) {
         }
         throw new Error(data.msg || 'API error');
     } catch (e) {
+        // 第三层：增强回退（带联系方式引导）
         console.error('AI API error:', e);
-        return '抱歉，我现在有点卡顿～可以直接联系我们的邮箱 296077990@qq.com，我会尽快回复你！';
+        return `抱歉，这个问题我需要一点时间思考～<br><br>📞 你可以直接电话联系：<b>${AI_KB.company.tel}</b><br>💬 或者加微信：<b>${AI_KB.company.wx}</b><br>📧 邮箱：${AI_KB.company.email}<br><br>我们会在第一时间回复你！`;
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initAIChat();
-});
+// ====== 聊天UI ======
+document.addEventListener('DOMContentLoaded', function() { initAIChat(); });
 
 let chatMessages, chatInput;
 
 function getCurrentTime() {
     const now = new Date();
-    return String(now.getHours()).padStart(2, '0') + ':' +
-           String(now.getMinutes()).padStart(2, '0');
+    return String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
 }
 
 function initAIChat() {
     const chatWidget = document.getElementById('aiChatWidget');
     if (!chatWidget) return;
-
     chatMessages = document.getElementById('chatMessages');
     chatInput = document.getElementById('chatInput');
     const chatSend = document.getElementById('chatSend');
-
     if (!chatMessages || !chatInput || !chatSend) return;
-
     chatSend.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+    chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
     loadChatHistory();
 }
 
@@ -728,7 +896,7 @@ async function sendMessage() {
 function addMessage(content, type) {
     const div = document.createElement('div');
     div.className = `message message-${type}`;
-    div.innerHTML = `<div class="message-content">${content.replace(/\n/g, '<br>')}</div><div class="message-time">${getCurrentTime()}</div>`;
+    div.innerHTML = `<div class="message-content">${content.replace(/\n/g,'<br>')}</div><div class="message-time">${getCurrentTime()}</div>`;
     chatMessages.appendChild(div);
     chatMessages.scrollTop = chatMessages.scrollHeight;
     saveChatHistory();
@@ -766,23 +934,23 @@ function loadChatHistory() {
             msgs.forEach(m => {
                 const d = document.createElement('div');
                 d.className = `message message-${m.type}`;
-                d.innerHTML = `<div class="message-content">${m.content.replace(/\n/g, '<br>')}</div>`;
+                d.innerHTML = `<div class="message-content">${m.content.replace(/\n/g,'<br>')}</div>`;
                 chatMessages.appendChild(d);
             });
             addQuickReplies();
             chatMessages.scrollTop = chatMessages.scrollHeight;
-        } catch (e) { addQuickReplies(); }
+        } catch(e) { addQuickReplies(); }
     } else { addQuickReplies(); }
 }
 
 function addQuickReplies() {
     const q = document.createElement('div');
     q.className = 'quick-replies';
-    q.innerHTML = `<button class="quick-reply-btn" data-q="website">💻 想做网站</button><button class="quick-reply-btn" data-q="miniapp">📱 想做小程序</button><button class="quick-reply-btn" data-q="coop">🤝 合作推广</button>`;
+    q.innerHTML = `<button class="quick-reply-btn" data-q="pricing">💰 网站开发报价</button><button class="quick-reply-btn" data-q="miniapp">📱 小程序报价</button><button class="quick-reply-btn" data-q="combo">🎁 网站+小程序组合</button>`;
     chatMessages.appendChild(q);
     q.querySelectorAll('.quick-reply-btn').forEach(b => {
         b.addEventListener('click', () => {
-            const v = b.dataset.q === 'website' ? '我想了解做网站' : b.dataset.q === 'miniapp' ? '小程序怎么弄' : '合作推广怎么聊';
+            const v = b.dataset.q === 'pricing' ? '网站开发多少钱？' : b.dataset.q === 'miniapp' ? '小程序报价多少？' : '网站和小程序一起做有优惠吗？';
             chatInput.value = v;
             sendMessage();
         });
