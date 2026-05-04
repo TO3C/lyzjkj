@@ -101,6 +101,7 @@ section { padding: 5rem 0; }
 .hero {
     min-height: 90vh; display: flex; align-items: center;
     background: var(--cream); position: relative;
+    overflow: hidden;
 }
 .hero::before {
     content: ''; position: absolute; top: -20%; right: -10%;

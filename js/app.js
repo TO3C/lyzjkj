@@ -79,6 +79,8 @@ function animateNumber(element) {
   }
   var finalNumber = parseInt(text);
   if (isNaN(finalNumber)) return;
+  // 跳过四位数（年份等不适合计数动画的值）
+  if (finalNumber >= 1900) return;
   var duration = 2000;
   var increment = finalNumber / (duration / 16);
   var currentNumber = 0;
