@@ -7,6 +7,7 @@ var page = document.body.dataset.page || 'home';
 document.addEventListener('DOMContentLoaded', function() {
   // ====== 全局 ======
   initSmoothScrolling();
+  initNavScroll();
   initScrollAnimations();
   initScrollProgress();
   initAIChat();
@@ -49,25 +50,59 @@ function initSmoothScrolling() {
 }
 
 // ===================================================================
-// 滚动动画
+// V6.0 导航滚动态
+// ===================================================================
+function initNavScroll() {
+  var navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  window.addEventListener('scroll', throttle(function() {
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  }, 16));
+  // 初始状态检查
+  if (window.scrollY > 50) navbar.classList.add('scrolled');
+}
+
+// ===================================================================
+// V6.0 滚动动画（staggered reveal）
 // ===================================================================
 function initScrollAnimations() {
-  var observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+  var observerOptions = { threshold: 0.12, rootMargin: '0px 0px -30px 0px' };
+  var staggerIdx = 0;
+
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        if (entry.target.classList.contains('stat-number')) {
-          animateNumber(entry.target);
+        var el = entry.target;
+        // Staggered delay
+        var delay = (staggerIdx % 4) * 0.06;
+        el.style.transitionDelay = delay + 's';
+        staggerIdx++;
+        el.classList.add('visible');
+        if (el.classList.contains('stat-number')) {
+          animateNumber(el);
         }
       }
     });
   }, observerOptions);
 
-  document.querySelectorAll('.price-card, .adv-card, .process-step, .fade-in, .stat-number, .feature-card, .project-card').forEach(function(el) {
+  document.querySelectorAll('.price-card, .adv-card, .process-step, .fade-in, .stat-number, .feature-card, .project-card, .enterprise-card').forEach(function(el) {
     el.classList.add('fade-in');
     observer.observe(el);
   });
+
+  // V6.0 Hero 视差
+  initHeroParallax();
+}
+
+function initHeroParallax() {
+  var visual = document.querySelector('.hero-visual');
+  if (!visual || window.innerWidth < 768) return;
+  window.addEventListener('scroll', throttle(function() {
+    var scrollY = window.scrollY;
+    if (scrollY > window.innerHeight) return;
+    visual.style.transform = 'translateY(' + (scrollY * 0.08) + 'px)';
+  }, 16));
 }
 
 function animateNumber(element) {
