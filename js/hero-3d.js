@@ -1,50 +1,52 @@
-// ====== 流云智炬 · Hero 3D 场景 V6.0 ======
+// ====== 流云智炬 · Hero 3D 场景 V6.1 ======
 // Three.js 低多边形几何体浮动，陶土色系暖光
-// 移动端 (<768px) 自动跳过，回退 CSS 渐变
+// 全端适配：桌面端5个几何体+60粒子，手机端3个+20粒子
 
 (function() {
   var container = document.querySelector('.hero-visual');
   if (!container) return;
 
   function init() {
-    if (window.innerWidth < 768) return;
     if (typeof THREE === 'undefined') return;
-    if (container.querySelector('canvas')) return; // already initialized
+    if (container.querySelector('canvas')) return;
 
     var w = container.clientWidth;
     var h = container.clientHeight;
     if (w === 0 || h === 0) return;
 
+    var isMobile = window.innerWidth < 768;
+
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(35, w / h, 0.5, 50);
-    camera.position.set(0, 0.3, 9);
+    camera.position.set(0, 0.3, isMobile ? 7 : 9);
     camera.lookAt(0, 0, 0);
 
-    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    var renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true });
     renderer.setSize(w, h);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     container.appendChild(renderer.domElement);
 
     // Lights
     scene.add(new THREE.AmbientLight(0xFDF6EC, 2.2));
-    var key = new THREE.PointLight(0xD4A853, 18, 20);
+    var key = new THREE.PointLight(0xD4A853, isMobile ? 14 : 18, 20);
     key.position.set(4, 3, 6);
     scene.add(key);
-    var fill = new THREE.PointLight(0xC67A4B, 8, 15);
+    var fill = new THREE.PointLight(0xC67A4B, isMobile ? 6 : 8, 15);
     fill.position.set(-3, -1, 3);
     scene.add(fill);
 
-    // Shapes
+    // Shapes — fewer on mobile
     var palette = [0xC67A4B, 0xD4845A, 0xD4A853, 0xE8D5C4, 0xF2E6D8, 0xB8956A];
     var shapes = [];
-    var defs = [
-      { geo: new THREE.IcosahedronGeometry(1.1, 0), pos: [-1.6, 0.2, 0] },
-      { geo: new THREE.TorusKnotGeometry(0.6, 0.18, 80, 12), pos: [1.4, -0.1, -0.5] },
-      { geo: new THREE.OctahedronGeometry(0.85, 0), pos: [0.2, -0.9, -1] },
-      { geo: new THREE.TorusGeometry(0.65, 0.16, 16, 32), pos: [-0.5, 0.9, 0.3] },
-      { geo: new THREE.IcosahedronGeometry(0.55, 0), pos: [1.8, 0.6, -1.2] }
+    var allDefs = [
+      { geo: new THREE.IcosahedronGeometry(isMobile ? 0.9 : 1.1, 0), pos: [-1.6, 0.2, 0] },
+      { geo: new THREE.TorusKnotGeometry(isMobile ? 0.5 : 0.6, 0.18, isMobile ? 40 : 80, isMobile ? 8 : 12), pos: [1.4, -0.1, -0.5] },
+      { geo: new THREE.OctahedronGeometry(isMobile ? 0.7 : 0.85, 0), pos: [0.2, -0.9, -1] },
+      { geo: new THREE.TorusGeometry(isMobile ? 0.5 : 0.65, 0.16, isMobile ? 12 : 16, isMobile ? 20 : 32), pos: [-0.5, 0.9, 0.3] },
+      { geo: new THREE.IcosahedronGeometry(isMobile ? 0.45 : 0.55, 0), pos: [1.8, 0.6, -1.2] }
     ];
+    var defs = isMobile ? allDefs.slice(0, 3) : allDefs;
 
     defs.forEach(function(d) {
       var mat = new THREE.MeshStandardMaterial({
@@ -64,17 +66,18 @@
       scene.add(mesh);
     });
 
-    // Particles
+    // Particles — fewer on mobile
+    var pCount = isMobile ? 20 : 60;
     var pGeo = new THREE.BufferGeometry();
-    var positions = new Float32Array(180);
-    for (var i = 0; i < 60; i++) {
+    var positions = new Float32Array(pCount * 3);
+    for (var i = 0; i < pCount; i++) {
       positions[i*3] = (Math.random()-0.5)*7;
       positions[i*3+1] = (Math.random()-0.5)*5;
       positions[i*3+2] = (Math.random()-0.5)*4;
     }
     pGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     var pts = new THREE.Points(pGeo, new THREE.PointsMaterial({
-      color: 0xD4A853, size: 0.03, transparent: true, opacity: 0.5,
+      color: 0xD4A853, size: isMobile ? 0.04 : 0.03, transparent: true, opacity: 0.5,
       blending: THREE.AdditiveBlending, depthWrite: false
     }));
     scene.add(pts);
