@@ -177,13 +177,12 @@ section { padding: 6rem 0; }
 .pricing-grid.active { display: grid; }
 
 .price-card {
-    background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border); border-radius: var(--radius);
-    padding: 1.75rem 1.5rem; transition: all 0.35s var(--ease);
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.25rem; transition: all 0.35s var(--ease);
     display: flex; flex-direction: column;
-    box-shadow: var(--shadow-card);
 }
-.price-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); border-color: var(--terracotta); }
+.price-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--terracotta); }
 .price-card.featured { border-color: var(--terracotta); border-width: 1.5px; position: relative; }
 .price-card.featured::before {
     content: '主推'; position: absolute; top: 10px; right: 10px;
@@ -477,6 +476,22 @@ section { padding: 6rem 0; }
     .contact-item { flex-direction: column; text-align: center; align-items: center; }
     .qr-code { margin: 0.4rem auto 0; }
     .process-arrow { display: none; }
+}
+
+/* V6.1 手机端定价横条紧凑布局 */
+@media (max-width: 768px) {
+    .price-card {
+        flex-direction: row; flex-wrap: wrap; align-items: center;
+        padding: 1rem 1.1rem; gap: 0;
+    }
+    .price-card.featured::before { top: 6px; right: 6px; font-size: 0.65rem; padding: 0.1rem 0.45rem; }
+    .price-name { width: 100%; font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .price-amount { font-size: 1.35rem; margin-bottom: 0; margin-right: 0.5rem; }
+    .price-market { font-size: 0.7rem; margin-bottom: 0; margin-right: auto; }
+    .price-desc { width: 100%; font-size: 0.72rem; margin-bottom: 0.3rem; }
+    .price-meta { width: 100%; font-size: 0.7rem; margin-bottom: 0.4rem; padding-bottom: 0.4rem; }
+    .price-features { display: none; }
+    .price-card .btn { padding: 0.4rem 1rem; font-size: 0.75rem; margin-top: 0.3rem; }
 }
 
 @media (max-width: 430px) {
