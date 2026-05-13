@@ -26,3 +26,12 @@ __pycache__/
 
 # Temp
 *.tmp
+
+# Secrets & env
+credentials.json
+.env
+.env.local
+*.log
+
+# CloudBase (local dev only)
+cloudbaserc.json
