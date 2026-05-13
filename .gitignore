@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.localized
+*.app
+
+# IDE
+.vscode/
+.idea/
+
+# Node
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Turbopack
+.cache/
+
+# Large binaries
+*.dmg
+*.pkg
+*.mp4
+*.mov
+
+# Temp
+*.tmp
