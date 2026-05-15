@@ -119,9 +119,10 @@ const About = () => {
 // ═══ Contact ═══
 const Contact = () => {
   const [ref,v] = useReveal();
+  useEffect(function(){try{emailjs.init('SF1gQ4b50a6Q4Z9OX')}catch(e){}},[]);
   const [fm,setFm] = useState({name:"",company:"",phone:"",email:"",service:"",message:""});
   const [ok,setOk] = useState(false); const [ld,setLd] = useState(false);
-  const hs = async (ev) => { ev.preventDefault(); setLd(true); try { await emailjs.sendForm('ic12wf', 'template_j4ddbl6', ev.target, 'SF1gQ4b50a6Q4Z9OX'); setLd(false); setOk(true); setTimeout(() => { setOk(false); setFm({ name: "", company: "", phone: "", email: "", service: "", message: "" }) }, 3500); } catch (err) { setLd(false); alert('发送失败，请重试或联系 296077990@qq.com'); } };
+  const hs = async (ev) => { ev.preventDefault(); var em=ev.target.email.value.trim(),ph=ev.target.phone.value.trim(),msg=ev.target.message.value.trim(); if(!em&&!ph){alert('请至少填写邮箱或电话');return;} if(msg.length<10){alert('需求描述至少10个字符');return;} setLd(true); try { await emailjs.sendForm('ic12wf', 'template_j4ddbl6', ev.target, 'SF1gQ4b50a6Q4Z9OX'); setLd(false); setOk(true); setTimeout(() => { setOk(false); setFm({ name: "", company: "", phone: "", email: "", service: "", message: "" }) }, 3500); } catch (err) { setLd(false); alert('发送失败，请重试或联系 296077990@qq.com'); } };
   const is = {width:"100%",padding:"14px 16px",background:"rgba(0,20,40,0.6)",border:"1px solid rgba(0,180,200,0.15)",borderRadius:10,color:"#e0f7fa",fontSize:15,outline:"none",fontFamily:"inherit",boxSizing:"border-box",transition:"border-color 0.35s"};
   const of=e=>{e.target.style.borderColor="#00e5ff";e.target.style.boxShadow="0 0 12px rgba(0,229,255,0.08)"};
   const ob=e=>{e.target.style.borderColor="rgba(0,180,200,0.15)";e.target.style.boxShadow="none"};
