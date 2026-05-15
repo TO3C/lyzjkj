@@ -862,10 +862,6 @@
                         <div><h4>公司地址</h4><p>海南省三亚市</p></div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div><h4>联系电话</h4><p>13876597418</p></div>
-                    </div>
-                    <div class="contact-item">
                         <div class="contact-icon">💬</div>
                         <div><h4>微信</h4><p>Lyzjkj</p></div>
                     </div>
@@ -967,7 +963,6 @@
                 name: '三亚流云智炬科技工作室',
                 slogan: '用温度做技术',
                 addr: '海南省三亚市',
-                tel: '13876597418',
                 wx: 'Lyzjkj',
                 email: '296077990@qq.com',
                 web: 'www.lyzjkj.top',
@@ -1049,7 +1044,7 @@
             const m = msg.toLowerCase();
             // 公司联系方式
             if (/电话|微信|联系|怎么联系|在哪|地址/.test(m)) {
-                return `📞 电话：${AI_KB.company.tel}<br>💬 微信：${AI_KB.company.wx}<br>📧 邮箱：${AI_KB.company.email}<br>🌐 官网：${AI_KB.company.web}<br>📍 地址：${AI_KB.company.addr}<br>⏰ 工作时间：${AI_KB.company.hours}`;
+                return `💬 微信：${AI_KB.company.wx}<br>📧 邮箱：${AI_KB.company.email}<br>🌐 官网：${AI_KB.company.web}<br>📍 地址：${AI_KB.company.addr}<br>⏰ 工作时间：${AI_KB.company.hours}`;
             }
             // 网站报价
             if (/网站.*(?:多少钱|报价|价格|套餐|收费)|做.*网站.*(?:多少|价格|报价|费用)/.test(m)) {
@@ -1130,7 +1125,7 @@
 ✅ <b>售后保障</b>：免费3个月，Bug 1工作日内修复<br>
 ✅ <b>数据保护</b>：合同明确数据保护条款<br>
 ✅ <b>AI智能客服</b>：B1及以上套餐免费赠送<br>
-📞 ${AI_KB.company.tel} | 💬 ${AI_KB.company.wx}`;
+💬 ${AI_KB.company.wx} | 📧 ${AI_KB.company.email}`;
             }
             // 流程
             if (/流程|步骤|怎么.*做|过程/.test(m)) {
@@ -1151,7 +1146,7 @@
 2️⃣ 主要目的是什么？（品牌展示/在线获客/在线交易）<br>
 3️⃣ 预算大概在什么范围？<br>
 4️⃣ 期望什么时间上线？<br><br>
-💡 也可以直接 📞 ${AI_KB.company.tel} 或 💬 ${AI_KB.company.wx}，我们电话沟通更快～`;
+💡 也可以直接 💬 ${AI_KB.company.wx} 或 📧 ${AI_KB.company.email}，我们线上沟通～`;
             }
             // 增值服务
             if (/增值|额外.*功能|定制.*功能|怎么加.*功能|多语言|英文.*网站|翻译/.test(m)) {
@@ -1184,7 +1179,7 @@
 · 🏥 意外险<br>
 · 🏢 企业团意险<br><br>
 保险的承保和理赔由大地保险负责，我们提供渠道服务。<br>
-需要具体险种报价可以联系 📞 ${AI_KB.company.tel}`;
+需要具体险种报价可以联系 💬 ${AI_KB.company.wx}`;
             }
             // 企业服务行业
             if (/企业服务|咨询.*公司|律师|代账|财税/.test(m)) {
@@ -1208,7 +1203,7 @@
 · "民宿小程序方案"<br>
 · "你们有什么优势？"<br>
 · "做网站要多久？"<br><br>
-也可以 📞 ${AI_KB.company.tel} 或 💬 ${AI_KB.company.wx} 直接联系我们～`;
+也可以 💬 ${AI_KB.company.wx} 或 📧 ${AI_KB.company.email} 直接联系我们～`;
             }
             // 团队价值观
             if (/价值观|文化|理念|使命/.test(m)) {
@@ -1244,7 +1239,6 @@
             // 未命中 KB：引导用户留联系方式
             return `这个问题我暂时还不会回答 😅<br><br>
 💡 但真人可以！建议直接联系：<br>
-　📞 电话：<b>${AI_KB.company.tel}</b><br>
 　💬 微信：<b>${AI_KB.company.wx}</b><br>
 　📧 邮箱：<b>${AI_KB.company.email}</b><br><br>
 或者试试这样问我：<br>
