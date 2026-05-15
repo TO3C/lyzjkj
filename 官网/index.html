@@ -884,23 +884,10 @@
                 </div>
                 <form class="contact-form reveal" onsubmit="handleSubmit(event)">
                     <div class="form-row">
-                        <div class="form-group"><label>您的姓名</label><input type="text" name="from_name" placeholder="请输入姓名" required></div>
-                        <div class="form-group"><label>联系电话</label><input type="tel" name="phone" placeholder="请输入手机号" required></div>
+                        <div class="form-group"><label>邮箱</label><input type="email" name="email" placeholder="请输入邮箱" required></div>
+                        <div class="form-group"><label>电话</label><input type="tel" name="phone" placeholder="请输入手机号"></div>
                     </div>
-                    <div class="form-group"><label>公司名称</label><input type="text" name="company" placeholder="请输入公司名称"></div>
-                    <div class="form-group">
-                        <label>需求类型</label>
-                        <select name="service_type" required>
-                            <option value="">请选择</option>
-                            <option value="website">网站开发</option>
-                            <option value="miniprogram">小程序开发</option>
-                            <option value="ai">AI智能客服</option>
-                            <option value="design">UI/UX设计</option>
-                            <option value="insurance">保险服务</option>
-                            <option value="other">其他</option>
-                        </select>
-                    </div>
-                    <div class="form-group"><label>需求描述</label><textarea name="message" placeholder="请简要描述您的需求..."></textarea></div>
+                    <div class="form-group"><label>需求描述</label><textarea name="message" placeholder="请简要描述您的需求..." required></textarea></div>
                     <button type="submit" class="btn btn-warm" style="width:100%;justify-content:center;">提交咨询</button>
                 </form>
             </div>
@@ -1274,16 +1261,10 @@
             btn.textContent = '提交中...';
             btn.disabled = true;
 
-            const name = form.querySelector('[name="from_name"]').value.trim();
-            const phone = form.querySelector('[name="phone"]').value.trim();
-            const company = form.querySelector('[name="company"]').value.trim() || '未填写';
-            const serviceType = form.querySelector('[name="service_type"]').selectedOptions[0].text;
-            const rawMessage = form.querySelector('[name="message"]').value.trim();
-
             const data = {
-                email: name,
-                phone: phone,
-                message: `【姓名】${name}\n【公司】${company}\n【需求类型】${serviceType}\n【需求描述】${rawMessage}`
+                email: form.querySelector('[name="email"]').value.trim(),
+                phone: form.querySelector('[name="phone"]').value.trim() || '未填写',
+                message: form.querySelector('[name="message"]').value.trim()
             };
 
             emailjs.send('service_pic12wf', 'template_j4ddbl6', data, 'SF1gQ4b50a6Q4Z9OX')
