@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>流云智炬科技 — 海南自贸港企业数字化服务</title>
     <meta name="description" content="流云智炬科技，专注海南自贸港企业数字化服务。网站开发、小程序开发、AI客服，助力企业数字化转型。">
+    <meta property="og:title" content="流云智炬科技 — 用温度做技术">
+    <meta property="og:description" content="海南自贸港企业数字化服务，网站开发、小程序开发、AI智能客服，源码交付，明码标价。">
+    <meta property="og:image" content="https://www.lyzjkj.top/og-image.png">
+    <meta property="og:url" content="https://www.lyzjkj.top">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C67A4B'/><text x='16' y='23' text-anchor='middle' font-family='serif' font-weight='700' font-size='16' fill='%23FDF6EC'>LY</text></svg>">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+SC:wght@300;400&family=Noto+Serif+SC:wght@600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>@font-face{font-family:'Noto Sans SC';font-display:swap}@font-face{font-family:'Noto Serif SC';font-display:swap}</style>
     <style>
         :root {
             /* === 品牌主色（遵循VI规范） === */
@@ -320,13 +328,22 @@
         .case-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-warm); }
 
         .case-thumb {
-            aspect-ratio: 16/10; background: var(--sand);
+            aspect-ratio: 16/10;
             display: flex; align-items: center; justify-content: center;
-            font-size: 48px; position: relative;
+            font-size: 56px; position: relative; overflow: hidden;
         }
+        .case-thumb.case-rent { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+        .case-thumb.case-hotel { background: linear-gradient(135deg, #3E2A1E 0%, #5C4033 50%, #8B6914 100%); }
+        .case-thumb.case-mall { background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 50%, #40916c 100%); }
         .case-thumb::after {
             content: ''; position: absolute; inset: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(253,246,236,0.5) 100%);
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%);
+        }
+        .case-thumb-tag {
+            position: absolute; bottom: 14px; left: 14px; z-index: 1;
+            color: rgba(255,255,255,0.9); font-family: var(--font-body);
+            font-size: 11px; font-weight: 400; background: rgba(255,255,255,0.12);
+            padding: 3px 10px; border-radius: 10px; backdrop-filter: blur(4px);
         }
         .case-body { padding: 24px; }
         .case-type {
@@ -336,7 +353,7 @@
         .case-body p { font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--ink-muted); line-height: 1.8; }
 
         /* ===== INDUSTRY ===== */
-        .industry-grid { grid-template-columns: repeat(5, 1fr); }
+        .industry-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
         .industry-features { font-family: var(--font-body); font-size: 12px; font-weight: 400; color: var(--ink-muted); line-height: 1.8; margin: 0; }
         .industry-price { margin-top: 8px; font-size: 13px; color: var(--terracotta); font-weight: 600; }
 
@@ -474,7 +491,7 @@
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .cases-grid { grid-template-columns: 1fr; max-width: 460px; }
+            .cases-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
             .contact-grid { grid-template-columns: 1fr; gap: 40px; }
             .industry-grid { grid-template-columns: repeat(3, 1fr); }
         }
@@ -496,11 +513,11 @@
             .hero-actions { flex-direction: column; }
             .services-grid { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
-            .chat-panel { width: calc(100vw - 20px); right: 10px; bottom: 80px; height: calc(100vh - 140px); max-height: 500px; }
+            .chat-panel { width: calc(100vw - 20px); right: 10px; bottom: calc(80px + env(safe-area-inset-bottom)); height: calc(100vh - 140px - env(safe-area-inset-bottom)); max-height: 500px; }
             .chat-close { padding: 12px; font-size: 22px; min-width: 44px; min-height: 44px; }
             .chat-qbtn { padding: 10px 16px; font-size: 13px; min-height: 44px; display: flex; align-items: center; }
             .chat-send { width: 44px; height: 44px; flex-shrink: 0; }
-            .chat-fab { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+            .chat-fab { bottom: calc(20px + env(safe-area-inset-bottom)); right: 20px; width: 52px; height: 52px; }
             .about-values { grid-template-columns: 1fr; }
             .footer-links { gap: 16px; flex-wrap: wrap; }
             .footer-links a { padding: 8px 4px; font-size: 14px; }
@@ -530,7 +547,7 @@
             <li><a href="#pricing">套餐</a></li>
             <li><a href="#industry">行业方案</a></li>
             <li><a href="#about">关于</a></li>
-            <li><a href="#cases">案例</a></li>
+            <li><a href="#miniapp-pricing">小程序套餐</a></li>
             <li><a href="#contact" class="nav-cta">免费咨询</a></li>
         </ul>
         <button class="nav-toggle" onclick="toggleNav()"><span></span><span></span><span></span></button>
@@ -560,7 +577,7 @@
                             </div>
                             <div class="hero-card-divider"></div>
                             <div>
-                                <div class="hero-card-stat-num">8年+</div>
+                                <div class="hero-card-stat-num">资深团队</div>
                                 <div class="hero-card-stat-label">技术积累</div>
                             </div>
                             <div class="hero-card-divider"></div>
@@ -828,42 +845,7 @@
         </div>
     </section>
 
-    <!-- CASES -->
-    <section class="section" id="cases">
-        <div class="container">
-            <div class="section-header reveal">
-                <div class="section-label">我们的作品</div>
-                <h2 class="section-title">每个项目，都是一份信任</h2>
-                <p class="section-desc">感谢每一位客户的选择，让我们有机会用技术讲述他们的故事。</p>
-            </div>
-            <div class="cases-grid">
-                <div class="case-card reveal">
-                    <div class="case-thumb">🏠</div>
-                    <div class="case-body">
-                        <div class="case-type">微信小程序</div>
-                        <h3>渔村梦想家</h3>
-                        <p>三亚本地租房小程序，房源展示、在线预约、地图导航、房东后台管理。</p>
-                    </div>
-                </div>
-                <div class="case-card reveal reveal-d1">
-                    <div class="case-thumb">🏨</div>
-                    <div class="case-body">
-                        <div class="case-type">品牌官网</div>
-                        <h3>三亚度假酒店</h3>
-                        <p>双语品牌官网，在线预订系统，SEO深度优化，移动端完美适配。</p>
-                    </div>
-                </div>
-                <div class="case-card reveal reveal-d2">
-                    <div class="case-thumb">🛒</div>
-                    <div class="case-body">
-                        <div class="case-type">商城小程序</div>
-                        <h3>海南特产商城</h3>
-                        <p>微信商城小程序，商品管理、购物车、微信支付、优惠券系统。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- CASES（待补充真实截图后开放） -->
 
     <!-- CONTACT -->
     <section class="section" id="contact" style="background: var(--warm-white);">
@@ -902,13 +884,13 @@
                 </div>
                 <form class="contact-form reveal" onsubmit="handleSubmit(event)">
                     <div class="form-row">
-                        <div class="form-group"><label>您的姓名</label><input type="text" placeholder="请输入姓名" required></div>
-                        <div class="form-group"><label>联系电话</label><input type="tel" placeholder="请输入手机号" required></div>
+                        <div class="form-group"><label>您的姓名</label><input type="text" name="from_name" placeholder="请输入姓名" required></div>
+                        <div class="form-group"><label>联系电话</label><input type="tel" name="phone" placeholder="请输入手机号" required></div>
                     </div>
-                    <div class="form-group"><label>公司名称</label><input type="text" placeholder="请输入公司名称"></div>
+                    <div class="form-group"><label>公司名称</label><input type="text" name="company" placeholder="请输入公司名称"></div>
                     <div class="form-group">
                         <label>需求类型</label>
-                        <select required>
+                        <select name="service_type" required>
                             <option value="">请选择</option>
                             <option value="website">网站开发</option>
                             <option value="miniprogram">小程序开发</option>
@@ -918,7 +900,7 @@
                             <option value="other">其他</option>
                         </select>
                     </div>
-                    <div class="form-group"><label>需求描述</label><textarea placeholder="请简要描述您的需求..."></textarea></div>
+                    <div class="form-group"><label>需求描述</label><textarea name="message" placeholder="请简要描述您的需求..."></textarea></div>
                     <button type="submit" class="btn btn-warm" style="width:100%;justify-content:center;">提交咨询</button>
                 </form>
             </div>
@@ -929,6 +911,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-text">© 2025–2026 三亚流云智炬科技工作室 · 用温度做技术</div>
+            <div class="footer-text" style="margin-top:4px;"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" style="color:var(--ink-muted);text-decoration:none;">琼ICP备2025064801号-1</a></div>
             <div class="footer-links">
                 <a href="#services">服务</a><a href="#pricing">网站套餐</a><a href="#miniapp-pricing">小程序套餐</a><a href="#industry">行业方案</a><a href="#about">关于</a><a href="#contact">联系</a>
             </div>
@@ -967,7 +950,12 @@
     </div>
 
     <script>
-        function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+        emailjs.init('SF1gQ4b50a6Q4Z9OX');
+
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+            document.body.style.overflow = document.getElementById('navLinks').classList.contains('open') ? 'hidden' : '';
+        }
         window.addEventListener('scroll', () => {
             document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
             document.querySelectorAll('section[id]').forEach(s => {
@@ -976,13 +964,15 @@
                 if (l) l.classList.toggle('active', window.scrollY >= t && window.scrollY < b);
             });
         });
-        document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+        document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+            document.body.style.overflow = '';
+        }));
 
         const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
         // === AI 客服配置 ===
-        const CHAT_API_URL = 'https://cloud1-0ggg2niq36a70b37.service.tcloudbase.com/ai-chat';
         let chatHistory = [];
 
         // ====== 本地知识库 V3.0 ======
@@ -1256,9 +1246,8 @@
         function showTyping() { const d = document.createElement('div'); d.className = 'chat-msg bot chat-typing'; d.id = 'typing'; d.innerHTML = '<span></span><span></span><span></span>'; document.getElementById('chatMessages').appendChild(d); }
         function hideTyping() { const e = document.getElementById('typing'); if (e) e.remove(); }
 
-        // ====== 智能回复引擎（KB优先 → API兜底） ======
+        // ====== 智能回复引擎（KB匹配 → 引导降级） ======
         async function getAIReply(message) {
-            // 第一层：本地知识库匹配（毫秒级响应）
             const kbReply = matchKB(message);
             if (kbReply) {
                 chatHistory.push({ role: 'user', content: message });
@@ -1267,39 +1256,39 @@
                 return kbReply;
             }
 
-            // 第二层：CloudBase AI 云函数（处理复杂/冷门问题）
-            try {
-                const res = await fetch(CHAT_API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message, history: chatHistory })
-                });
-                const data = await res.json();
-                if (data.code === 200 && data.data.reply) {
-                    chatHistory.push({ role: 'user', content: message });
-                    chatHistory.push({ role: 'assistant', content: data.data.reply });
-                    if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
-                    return data.data.reply.replace(/\n/g, '<br>');
-                }
-                throw new Error(data.msg || '请求失败');
-            } catch (e) {
-                console.error('AI chat error:', e);
-                // 第三层：增强降级（引导客户留联系方式）
-                return `抱歉，这个问题有点复杂，我暂时无法自动回答 😅<br><br>
-📞 建议直接联系我们：<br>
-　电话：<b>${AI_KB.company.tel}</b><br>
-　微信：<b>${AI_KB.company.wx}</b><br>
-　邮箱：<b>${AI_KB.company.email}</b><br><br>
-我们会尽快回复你！或者你可以换个方式再问我～`;
-            }
+            // 未命中 KB：引导用户留联系方式
+            return `这个问题我暂时还不会回答 😅<br><br>
+💡 但真人可以！建议直接联系：<br>
+　📞 电话：<b>${AI_KB.company.tel}</b><br>
+　💬 微信：<b>${AI_KB.company.wx}</b><br>
+　📧 邮箱：<b>${AI_KB.company.email}</b><br><br>
+或者试试这样问我：<br>
+· "网站开发多少钱"<br>
+· "小程序要多久"<br>
+· "你们有什么优势"`;
         }
 
-        function handleSubmit(e) {
+        async function handleSubmit(e) {
             e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
-            btn.textContent = '✓ 提交成功，我们会尽快联系你';
-            btn.style.background = 'var(--sage)';
-            setTimeout(() => { btn.textContent = '提交咨询'; btn.style.background = ''; e.target.reset(); }, 3000);
+            const form = e.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = '提交中...';
+            btn.disabled = true;
+
+            try {
+                await emailjs.sendForm('service_pic12wf', 'template_j4ddbl6', form);
+                btn.textContent = '✓ 提交成功，我们会尽快联系你';
+                btn.style.background = 'var(--sage)';
+                form.reset();
+                setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; btn.disabled = false; }, 3000);
+            } catch (err) {
+                console.error('Submit error:', err);
+                btn.textContent = '提交失败，请重试';
+                btn.style.background = '#d9534f';
+                btn.disabled = false;
+                setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; }, 2500);
+            }
         }
     </script>
 </body>
