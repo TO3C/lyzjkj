@@ -1255,13 +1255,15 @@
             btn.textContent = '提交中...';
             btn.disabled = true;
 
-            const data = {
-                email: form.querySelector('[name="email"]').value.trim(),
-                phone: form.querySelector('[name="phone"]').value.trim() || '未填写',
-                message: form.querySelector('[name="message"]').value.trim()
-            };
+            if (typeof emailjs === 'undefined') {
+                btn.textContent = 'CDN加载失败，请刷新页面重试';
+                btn.style.background = '#d9534f';
+                btn.disabled = false;
+                setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; }, 3000);
+                return;
+            }
 
-            emailjs.send('service_pic12wf', 'template_j4ddbl6', data, 'SF1gQ4b50a6Q4Z9OX')
+            emailjs.sendForm('service_pic12wf', 'template_j4ddbl6', form, 'SF1gQ4b50a6Q4Z9OX')
                 .then(() => {
                     btn.textContent = '✓ 提交成功，我们会尽快联系你';
                     btn.style.background = 'var(--sage)';
