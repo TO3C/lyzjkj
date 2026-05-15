@@ -11,7 +11,7 @@
     <meta property="og:url" content="https://www.lyzjkj.top">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C67A4B'/><text x='16' y='23' text-anchor='middle' font-family='serif' font-weight='700' font-size='16' fill='%23FDF6EC'>LY</text></svg>">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+SC:wght@300;400&family=Noto+Serif+SC:wght@600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
@@ -950,8 +950,6 @@
     </div>
 
     <script>
-        emailjs.init('SF1gQ4b50a6Q4Z9OX');
-
         function toggleNav() {
             document.getElementById('navLinks').classList.toggle('open');
             document.body.style.overflow = document.getElementById('navLinks').classList.contains('open') ? 'hidden' : '';
@@ -1268,7 +1266,7 @@
 · "你们有什么优势"`;
         }
 
-        async function handleSubmit(e) {
+        function handleSubmit(e) {
             e.preventDefault();
             const form = e.target;
             const btn = form.querySelector('button[type="submit"]');
@@ -1276,19 +1274,28 @@
             btn.textContent = '提交中...';
             btn.disabled = true;
 
-            try {
-                await emailjs.sendForm('service_pic12wf', 'template_j4ddbl6', form);
-                btn.textContent = '✓ 提交成功，我们会尽快联系你';
-                btn.style.background = 'var(--sage)';
-                form.reset();
-                setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; btn.disabled = false; }, 3000);
-            } catch (err) {
-                console.error('Submit error:', err);
-                btn.textContent = '提交失败，请重试';
-                btn.style.background = '#d9534f';
-                btn.disabled = false;
-                setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; }, 2500);
-            }
+            const data = {
+                from_name: form.querySelector('[name="from_name"]').value.trim(),
+                phone: form.querySelector('[name="phone"]').value.trim(),
+                company: form.querySelector('[name="company"]').value.trim() || '未填写',
+                service_type: form.querySelector('[name="service_type"]').value,
+                message: form.querySelector('[name="message"]').value.trim()
+            };
+
+            emailjs.send('service_pic12wf', 'template_j4ddbl6', data, 'SF1gQ4b50a6Q4Z9OX')
+                .then(() => {
+                    btn.textContent = '✓ 提交成功，我们会尽快联系你';
+                    btn.style.background = 'var(--sage)';
+                    form.reset();
+                    setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; btn.disabled = false; }, 3000);
+                })
+                .catch(err => {
+                    console.error('Submit error:', err);
+                    btn.textContent = '提交失败，请重试';
+                    btn.style.background = '#d9534f';
+                    btn.disabled = false;
+                    setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; }, 2500);
+                });
         }
     </script>
 </body>
